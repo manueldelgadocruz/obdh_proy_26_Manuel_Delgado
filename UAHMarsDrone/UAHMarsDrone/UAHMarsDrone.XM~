@@ -1,0 +1,236 @@
+<edroom_project>
+	<model name="UAHMarsDrone" modified="no" version="0">
+		<options  debug="no" DMem="no" ExcepHandl="no" version="0"></options>
+		<target  name="EDROOMTarget" IRQClkPeriod="55" unit="ms" version="0">
+			<resources NBinSem="0" NResSem="0" NTask="0" TotalTasksStackSize="0" version="0"></resources>
+		</target>
+		<CData>
+			<CDatum modified="no" name="CDTCAcceptReport"/>			<CDatum modified="no" name="CDTCExecCtrl"/>			<CDatum modified="no" name="CDDroneConfig"/>			<CDatum modified="no" name="CDTCMemDescriptor"/>			<CDatum modified="no" name="CDTCHandler"/>			<CDatum modified="no" name="CDEvAction"/>		</CData>
+		<CProtocols>
+			<CProtocol  name="CPHK_FDIRCtrl" modified="0" version="2">
+				<messages>
+					<msgIn 
+ type="asynchr" signal="SHK_FDIR_TC" cdatum="CDTCHandler" version="0">
+					</msgIn>
+				</messages>
+				<msgSequences>
+				</msgSequences>
+			</CProtocol>
+			<CIRQProtocol  name="CPRxTC" irqVector="18" msgPriority="EDROOMprioVeryHigh" modified="0" version="2">
+				<irqHandler>
+					<handler_line line ="
+#ifdef NEXYS_PLATFORM "/>
+					<handler_line line ="
+ "/>
+					<handler_line line ="
+EDROOMIRQ18BottomHalfSignal=EDROOMVarIRQ18.HandleIRQ();"/>
+					<handler_line line ="
+ "/>
+					<handler_line line ="
+#endif"/>
+				</irqHandler>
+				<messages>
+					<msgIn 
+ type="asynchr" signal="EDROOMIRQsignal" cdatum="CDTCMemDescriptor" version="0">
+					</msgIn>
+				</messages>
+			</CIRQProtocol>
+			<CProtocol  name="CPBKGExecCtrl" modified="0" version="2">
+				<messages>
+					<msgIn 
+ type="asynchr" signal="SBKGTC" cdatum="CDTCHandler" version="0">
+					</msgIn>
+				</messages>
+				<msgSequences>
+				</msgSequences>
+			</CProtocol>
+			<CProtocol  name="CPDroneMngCtrl" modified="1" version="2">
+				<messages>
+					<msgIn 
+ type="synchr" signal="SDroneSetUp" cdatum="CDDroneConfig" version="0">
+					</msgIn>
+					<msgIn 
+ type="asynchr" signal="SDroneTC" cdatum="CDTCHandler" version="0">
+					</msgIn>
+					<msgOut 
+ type="synchr" signal="SDroneReady" cdatum="NULL" version="0">
+					</msgOut>
+				</messages>
+				<msgSequences>
+				</msgSequences>
+			</CProtocol>
+		</CProtocols>
+		<CActors>
+			<CActor name="UAHMarsDrone" modifiedH="yes" modifiedCPP="yes" version="1">
+				<structure  stack = "1" numMsgDef = "10" version= "3">
+						<parameter  version="1">
+ <CData ref ="NULL"/>		<default val=" "/>
+		<description memo=" "/>
+	</parameter>
+					<signals>						<signal name="EDROOMSignalTimeout" id="0"/>
+						<signal name="EDROOMSignalDestroy" id="1"/>
+					</signals>					<ports>						<port name = "Timer" id = "1" type = "internal" conjugated = "no" replicas = "1" CProtocol = "EDROOMTimingSAP" version = "0" >
+							<description memo="XXX"/>
+							<graphInfPort  x = "10" y= "49" version = "0" />						</port>					</ports>					<actors>						<actor  name="DroneMng" cactor="CCDroneMng" version="2">
+							<graphInfActor  x1 = "41.6016" y1= "54.4148" x2 = "59.1797" y2= "77.0021" version = "0" />						</actor>
+					</actors>					<unions>					</unions>					</structure>
+				<behaviour handleExcep = "no" version = "2" >
+					<events> 						<event name = "EvTimerTimer"  type = "Timer"  version = "0" >
+						</event>
+					</events> 					<modules> 						<module 
+ name_header = "emu_hw_timecode_drv"  path_header = " "  name_code = "v1"  path_code = " "  isMESP_SWI = "1"  copyToTarget = "1"  version = "0" />
+					</modules> 					<pools> 					</pools> 					<statemachine  name = "Top"  id = "0"  parentid = "-1"  version = "0" >
+						<substates  version = "0" >
+							<state id = "0" name = "I"  entryAction = ";"  entrySend = ";"  exitAction = ";"  exitSend = ";" >
+							<notValidMsgAction name = ";" redefined = "no"/>
+						<graphIStateInf>							<graphInf  x = "73"  y = "73"  width = "55"  height = "55"  version = "0" />
+							</graphIStateInf>						</state>							<state id = "1" name = "Ready"  entryAction = ";"  entrySend = ";"  exitAction = "FProgTimer();"  exitSend = ";" >
+							<notValidMsgAction name = ";" redefined = "yes"/>
+						<graphStateInf>							<graphInf  x = "192"  y = "225"  width = "156"  height = "104"  version = "0" />
+							</graphStateInf>						</state>						</substates>						<choicePoints  version = "0" >
+						</choicePoints>
+<transitions  version = "0" >
+							<transition id = "0"  name = "Init"  msgDataHandler = ";"  action = "FEmuInit();"  sendAction = ";"  invokeReplyAction = ";" >
+<trigger interface = "EDROOMsl" signal = "EDROOMStart" guard = "true" />
+								<origin name = "I"  type = "ISubState" />
+								<destination name = "Ready"  type = "SubState" />
+								<throwEvent name = " " />
+								<deadlinemarkEventOnStart name = " " />
+								<deadlinemarkEventOnEnd name = " " />
+								<graphTransInf  x1 = "118"  y1 = "119"  x2 = "192"  y2 = "243"  type = "0"  version = "0" />
+							</transition> 
+							<transition id = "1"  name = "RxTimeCode"  msgDataHandler = ";"  action = "FEmuRxTimeCode();"  sendAction = ";"  invokeReplyAction = ";" >
+<trigger interface = "Timer" signal = "EDROOMSignalTimeout" guard = "true" />
+								<origin name = "Ready"  type = "SubState" />
+								<destination name = "Ready"  type = "SubState" />
+								<throwEvent name = " " />
+								<deadlinemarkEventOnStart name = " " />
+								<deadlinemarkEventOnEnd name = " " />
+								<graphTransInf  x1 = "218"  y1 = "225"  x2 = "330"  y2 = "225"  type = "4"  version = "0" />
+							</transition> 
+						</transitions>
+						<variables  version = "0" >
+							<variable  name = "VEmuTimeCode"  type = "Pr_Time"  initValue = " "  array = "no"  dim = "1"  version = "0" >
+							</variable>						</variables> 						<constants version = "0" >
+						</constants> 						<methods version = "0" >
+							<method  prototype = "FEmuInit()"  type = "void" >
+																<time_spec 
+ seconds= "0" nanoseconds= "0">
+									 execution_time 
+								</time_spec>
+<standard_includes>
+								</standard_includes>
+								<body>
+									<body_line  line = " "/>
+									<body_line  line = "	"/>
+									<body_line  line = " "/>
+									<body_line  line = "VEmuTimeCode.GetTime();"/>
+									<body_line  line = " "/>
+									<body_line  line = "EmuHwTimeCodeStartUp();"/>
+									<body_line  line = "	 "/>
+									<body_line  line = "VEmuTimeCode.GetTime();	"/>
+									<body_line  line = "VEmuTimeCode+=Pr_Time(1,0);"/>
+									<body_line  line = " "/>
+									<body_line  line = "time=VEmuTimeCode;"/>
+								</body>
+							</method>							<method  prototype = "FEmuRxTimeCode()"  type = "void" >
+																<time_spec 
+ seconds= "0" nanoseconds= "0">
+									 execution_time 
+								</time_spec>
+<standard_includes>
+								</standard_includes>
+								<body>
+									<body_line  line = "EmuHwTimeCodePassSecond();"/>
+								</body>
+							</method>							<method  prototype = "FProgTimer()"  type = "void" >
+																<time_spec 
+ seconds= "0" nanoseconds= "0">
+									 execution_time 
+								</time_spec>
+<standard_includes>
+								</standard_includes>
+								<body>
+									<body_line  line = "VEmuTimeCode+=Pr_Time(1,0);"/>
+									<body_line  line = " "/>
+									<body_line  line = "  time=VEmuTimeCode;"/>
+								</body>
+							</method>						</methods>						<subStatemachines>						</subStatemachines>					</statemachine></behaviour>
+			</CActor >
+			<CActor name="CCDroneMng" modifiedH="yes" modifiedCPP="yes" version="1">
+				<structure  stack = "1" numMsgDef = "10" version= "3">
+					<signals>						<signal name="EDROOMSignalTimeout" id="0"/>
+						<signal name="EDROOMSignalDestroy" id="1"/>
+						<signal name="SDroneSetUp" id="2"/>
+						<signal name="SDroneTC" id="3"/>
+						<signal name="SDroneReady" id="4"/>
+					</signals>					<ports>						<port name = "DroneMngCtrl" id = "1" type = "external" conjugated = "no" replicas = "1" CProtocol = "CPDroneMngCtrl" version = "0" >
+							<description memo="XXX"/>
+							<graphInfPort  x = "44" y= "4" version = "0" />						</port>					</ports>					<actors>					</actors>					<unions>					</unions>					</structure>
+				<behaviour handleExcep = "no" version = "2" >
+					<events> 					</events> 					<modules> 					</modules> 					<pools> 					</pools> 					<statemachine  name = "Top"  id = "0"  parentid = "-1"  version = "0" >
+						<substates  version = "0" >
+							<state id = "0" name = "I"  entryAction = ";"  entrySend = ";"  exitAction = ";"  exitSend = ";" >
+							<notValidMsgAction name = ";" redefined = "no"/>
+						<graphIStateInf>							<graphInf  x = "73"  y = "73"  width = "55"  height = "55"  version = "0" />
+							</graphIStateInf>						</state>						</substates>						<choicePoints  version = "0" >
+						</choicePoints>
+<transitions  version = "0" >
+						</transitions>
+						<variables  version = "0" >
+						</variables> 						<constants version = "0" >
+						</constants> 						<methods version = "0" >
+						</methods>						<subStatemachines>						</subStatemachines>					</statemachine></behaviour>
+			</CActor >
+		</CActors>
+	</model>
+	<deployment>
+		<actors>
+			<actor  name = "MainActor" id = "1" maxNumMsg = "13" version= "0">
+					<CActor name = "UAHMarsDrone"/>
+					<paramInit  value = " "/>
+				<events>
+					<event  name = "EvTimerTimer" id = "1" type = "Timer" priority = "1" version= "0">
+						<time_spec 
+ seconds= "0" nanoseconds= "0">
+							 MinPeriod 
+						</time_spec>
+						<deadline  version= "0">
+								<deadlineMarkEvent  eventId= "-1" actorId= "-1"/>
+							<time_spec 
+ seconds= "0" nanoseconds= "0">
+								 Time 
+							</time_spec>
+						</deadline>					</event>				</events>
+				<ports>
+	<port id="0" name="edroomPort" type="system" />
+	<port id = "1" name = "Timer" type = "timing"/>
+				</ports>
+				<connections>
+				</connections>
+			</actor>			<actor  name = "DroneMng" id = "2" maxNumMsg = "10" version= "0">
+					<CActor name = "CCDroneMng"/>
+					<paramInit  value = ""/>
+				<events>
+				</events>
+				<ports>
+	<port id="0" name="edroomPort" type="system" />
+	<port id = "1" name = "DroneMngCtrl" type = "external"/>
+				</ports>
+				<connections>
+				</connections>
+			</actor>		</actors>
+		<startEvent>
+			<event  name = "EvEDROOMStart" id = "0" type = "External" priority = "1" version= "0">
+				<time_spec 
+ seconds= "0" nanoseconds= "0">
+					 MinPeriod 
+				</time_spec>
+				<deadline  version= "0">
+						<deadlineMarkEvent  eventId= "-1" actorId= "-1"/>
+					<time_spec 
+ seconds= "0" nanoseconds= "0">
+						 Time 
+					</time_spec>
+				</deadline>			</event>		</startEvent>
+	</deployment></edroom_project>
