@@ -19,9 +19,9 @@ UAHMarsDrone
 [CurrentTarget]
 0
 [MESP Directory]
-z:\home\atcsol\OBDH_2026-workspace\uah_mars_drone_freertos_hito1\asw
+C:\Users\manud\Documents\GitHub\obdh_proy_26_Manuel_Delgado\UAHMarsDrone\UAHMarsDrone
 [MESP main Directory]
-z:\home\atcsol\OBDH_2026-workspace\uah_mars_drone_freertos_hito1
+C:\Users\manud\Documents\GitHub\obdh_proy_26_Manuel_Delgado\UAHMarsDrone
 [MESP main prototype]
 int main (void)
 [MESP main return]
@@ -93,13 +93,29 @@ Timer
 [Version]
 1
 DroneMng
-19653336
+2
 10
 EDROOMprioNormal
  
 CCDroneMng
 UAHMarsDrone
 [EventsDeployment]
+1
+[EventDeployment]
+[Version]
+1
+EvTimerTimer
+Timer
+0
+1
+0
+0
+[CEgRoomDeadLine]
+[Version]
+1
+-1
+-1
+0
 0
 [EventDeployment]
 [Version]
