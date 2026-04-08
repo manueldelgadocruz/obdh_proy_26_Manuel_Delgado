@@ -115,7 +115,7 @@ FDroneSelfTest();
 0
 287 140 90 60
 [FinObjetoGrafico]
-Flight Plan
+FlightPlan
 ;
 ;
 ;
@@ -139,7 +139,7 @@ Ready
 [ObjetoGrafico]
 [Version Objeto Grafico]
 0
-78 238 199 80
+96 238 199 80
 [FinObjetoGrafico]
 [PuntosEleccion]
 2
@@ -180,11 +180,11 @@ FToReady();
 [GraficoRama]
 [Version GraficoRama]
 0
-431 294 277 293 3
+431 294 295 293 3
 [FinGraficoRama]
 ProgNextCtrl
 !GFlightPlanDone()
-Flight Plan
+FlightPlan
 DSubEst
 FProgNextCtrl();
  
@@ -207,7 +207,7 @@ ExecTC
 5
 InitFlightPlan
 GExecFlightPlan()
-Flight Plan
+FlightPlan
 DSubEst
 FInitFlightPlan();
  
@@ -237,7 +237,7 @@ DSubEst
 [GraficoRama]
 [Version GraficoRama]
 0
-168 423 94 318 3
+168 423 112 318 3
 [FinGraficoRama]
 [Transiciones]
 4
@@ -266,7 +266,7 @@ true
 0
 123 83 287 170 0
 [FinGraficoTransicion]
- 
+ DroneSetUp
 SelfTest
 OSubEst
 Ready
@@ -287,7 +287,7 @@ FGetConfig();
 [GraficoTransicion]
 [Version GraficoTransicion]
 0
-330 200 182 238 2
+330 200 200 238 2
 [FinGraficoTransicion]
 ExecTC
 Ready
@@ -310,10 +310,10 @@ FExecDroneTC();
 [GraficoTransicion]
 [Version GraficoTransicion]
 0
-168 318 168 389 2
+186 318 168 389 2
 [FinGraficoTransicion]
 CtrlAlgorithm
-Flight Plan
+FlightPlan
 OSubEst
 CtrlAlgorithm
 DPEleccion
