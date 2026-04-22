@@ -166,13 +166,13 @@ ExecTC
 [Version Ramas]
 5
 WaitFP
-GExecFlightPlan()
+true
 Ready
 DSubEst
 ;
+
  
- 
- 
+
 ;
 ;
 ;
@@ -183,13 +183,13 @@ DSubEst
 195 433 153 372 3
 [FinGraficoRama]
 InitFlightPlan
-true
+GExecFlightPlan()
 FlightPlan
 DSubEst
 FInitFlightPlan();
+
  
- 
- 
+
 ;
 ;
 ;
