@@ -240,19 +240,8 @@ void CCDroneMng::EDROOM_SUB_Top_0::EDROOMBehaviour()
 
 				//Msg->Data Handling 
 				FExecDroneTC();
-				//Evaluate Branch WaitFP
+				//Evaluate Branch InitFlightPlan
 				if( GExecFlightPlan() )
-				{
-
-					//Branch taken is ExecTC_WaitFP
-					edroomCurrentTrans.localId =
-						ExecTC_WaitFP;
-
-					//Next State is Ready
-					edroomNextState = Ready;
-				 } 
-				//Default Branch InitFlightPlan
-				else
 				{
 					//Execute Action 
 					FInitFlightPlan();
@@ -263,6 +252,17 @@ void CCDroneMng::EDROOM_SUB_Top_0::EDROOMBehaviour()
 
 					//Next State is FlightPlan
 					edroomNextState = FlightPlan;
+				 } 
+				//Default Branch WaitFP
+				else
+				{
+
+					//Branch taken is ExecTC_WaitFP
+					edroomCurrentTrans.localId =
+						ExecTC_WaitFP;
+
+					//Next State is Ready
+					edroomNextState = Ready;
 				 } 
 				break;
 			//To Choice Point CtrlAlgorithm
