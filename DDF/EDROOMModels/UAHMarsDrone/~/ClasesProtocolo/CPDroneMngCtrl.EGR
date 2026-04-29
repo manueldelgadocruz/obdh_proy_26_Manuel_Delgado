@@ -1,0 +1,46 @@
+[Version Protocolo]
+9
+0
+0
+0
+0
+1
+2
+[Version Mensaje]
+1
+[Version Senal]
+0
+SDroneTC
+[Version Dato]
+1
+CDTCHandler
+C:\Users\facud\OneDrive\Documents\GitHub\obdh_proy_26_Facundo_Dalfonso\UAHMarsDrone\
+es.uah.aut.srg.edroom.mclev.data_sai.cdtchandler
+v1
+0
+[Version Mensaje]
+1
+[Version Senal]
+0
+SDroneSetup
+[Version Dato]
+1
+CDDroneConfig
+C:\Users\facud\OneDrive\Documents\GitHub\obdh_proy_26_Facundo_Dalfonso\UAHMarsDrone\
+es.uah.aut.srg.edroom.mclev.data_sai.cddroneconfig
+v1
+0
+1
+[Version Mensaje]
+1
+[Version Senal]
+0
+SDroneReady
+[Version Dato]
+1
+NULL
+C:\Users\facud\OneDrive\Documents\GitHub\obdh_proy_26_Facundo_Dalfonso\UAHMarsDrone\
+es.uah.aut.srg.edroom.mclev.data_sai.NULL
+v1
+0
+0

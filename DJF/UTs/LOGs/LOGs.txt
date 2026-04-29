@@ -1,0 +1,100 @@
+SendDrone TC 
+SendDrone TC 
+SendDrone TC 
+Drone In Flight Plan  
+...........
+Step 1 OK: pus_service129_drone_selftest
+
+Step 1 to 2 Timing is OK
+Step 2 OK: pus_service129_setup
+
+Step 2 to 3 Timing is OK
+Step 3 OK: pus_service129_drone_ready
+
+Step 3 to 4 Timing is OK
+Step 4 OK: pus_service129_exec_tc
+
+Step 4 to 5 Timing is OK
+Step 5 OK: pus_service129_flight_plan_ready?
+
+Step 5 to 6 Timing is OK
+Step 6 OK: pus_service129_exec_tc
+
+Step 6 to 7 Timing is OK
+Step 7 OK: pus_service129_flight_plan_ready?
+
+Step 7 to 8 Timing is OK
+Step 8 OK: pus_service129_exec_tc
+
+Step 8 to 9 Timing is OK
+Step 9 OK: pus_service129_flight_plan_ready?
+
+Step 9 to 10 Timing is OK
+Step 10 OK: pus_service129_init_flight_plan
+
+Step 10 to 11 Timing is OK
+Step 11 OK: pus_service129_flight_ctrl_algorithm
+
+Step 11 to 12 Timing is OK
+Step 12 OK: pus_service129_flight_plan_done?
+
+Step 12 to 13 Timing is OK
+Step 13 OK: pus_service129_flight_ctrl_algorithm
+
+Step 13 to 14 Timing is OK
+Step 14 OK: pus_service129_flight_plan_done?
+
+Step 14 to 15 Timing is OK
+Step 15 OK: pus_service129_flight_ctrl_algorithm
+
+Step 15 to 16 Timing is OK
+Step 16 OK: pus_service129_flight_plan_done?
+
+Step 16 to 17 Timing is OK
+Step 17 OK: pus_service129_flight_ctrl_algorithm
+
+Step 17 to 18 Timing is OK
+Step 18 OK: pus_service129_flight_plan_done?
+
+Step 18 to 19 Timing is OK
+Step 19 OK: pus_service129_flight_ctrl_algorithm
+
+Step 19 to 20 Timing is OK
+Step 20 OK: pus_service129_flight_plan_done?
+
+Step 20 to 21 Timing is OK
+Step 21 OK: pus_service129_flight_ctrl_algorithm
+
+Step 21 to 22 Timing is OK
+Step 22 OK: pus_service129_flight_plan_done?
+
+Step 22 to 23 Timing is OK
+Step 23 OK: pus_service129_flight_ctrl_algorithm
+
+Step 23 to 24 Timing is OK
+Step 24 OK: pus_service129_flight_plan_done?
+
+Step 24 to 25 Timing is OK
+Step 25 OK: pus_service129_flight_ctrl_algorithm
+
+Step 25 to 26 Timing is OK
+Step 26 OK: pus_service129_flight_plan_done?
+
+Step 26 to 27 Timing is OK
+Step 27 OK: pus_service129_flight_ctrl_algorithm
+
+Step 27 to 28 Timing is OK
+Step 28 OK: pus_service129_flight_plan_done?
+
+Step 28 to 29 Timing is OK
+Step 29 OK: pus_service129_flight_ctrl_algorithm
+
+Step 29 to 30 Timing is OK
+Step 30 OK: pus_service129_flight_plan_done?
+
+Step 30 to 31 Timing is OK
+Step 31 OK: pus_service129_drone_ready
+
+
+
+*********************** UT_CCDroneMng OK ***********************

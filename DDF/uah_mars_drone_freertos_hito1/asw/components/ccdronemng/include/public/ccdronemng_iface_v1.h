@@ -36,7 +36,7 @@ public:
 	 */
 	 enum TEDROOMCCDroneMngSignal { EDROOMSignalTimeout, 
 							EDROOMSignalDestroy, 
-							SDroneSetUp, 
+							SDroneSetup, 
 							SDroneTC, 
 							SDroneReady };
 
@@ -105,8 +105,8 @@ public:
 	CEDROOMTimingSAP	 EDROOMtimingSAP;
 
 
-	//! DroneTimer Timing Port
-	CEDROOMTimingInterface	DroneTimer;
+	//! Timer Timing Port
+	CEDROOMTimingInterface	Timer;
 
 
 
@@ -175,7 +175,7 @@ public:
 	 */
 	enum TEDROOMCCDroneMngSignal { EDROOMSignalTimeout,
 		EDROOMSignalDestroy,
-		SDroneSetUp,
+		SDroneSetup,
 		SDroneTC,
 		SDroneReady };
 
@@ -193,7 +193,7 @@ public:
 
 		//!Component ports
 		CEDROOMInterface & DroneMngCtrl;
-		CEDROOMTimingInterface & DroneTimer;
+		CEDROOMTimingInterface & Timer;
 
 
 		//! State Identifiers
@@ -204,26 +204,26 @@ public:
 
 		//!Transition Identifiers
 		enum TEDROOMTransitionID{Init,
-			ToReady,
-			ExecTC,
-			ExecTC_WaitFP,
-			ExecTC_InitFlightPlan,
 			CtrlAlgorithm,
 			CtrlAlgorithm_PlanDone,
 			CtrlAlgorithm_ProgNextCtrl,
+			Transicion1,
+			ExecTC,
+			ExecTC_InitFlightPlan,
+			ExecTC_WaitFP,
 			EDROOMMemoryTrans };
 
 
 
 		//!Variables
-		Pr_Time &VNextCtrl;
+		Pr_Time &VNextCtrl;;
 
 
 
 
 		//!Constructor
 		EDROOM_CTX_Top_0 (CCDroneMng &act,
-				Pr_Time & EDROOMpVarVNextCtrl );
+				Pr_Time & EDROOMpVarVNextCtrl; );
 
 		//!Copy constructor
 		EDROOM_CTX_Top_0 (EDROOM_CTX_Top_0 &context);
@@ -326,7 +326,7 @@ public:
 		EDROOM_CTX_Top_0::TEDROOMStateID edroomNextState;
 
 		//!Variables
-		Pr_Time VNextCtrl;
+		Pr_Time VNextCtrl;;
 
 
 
