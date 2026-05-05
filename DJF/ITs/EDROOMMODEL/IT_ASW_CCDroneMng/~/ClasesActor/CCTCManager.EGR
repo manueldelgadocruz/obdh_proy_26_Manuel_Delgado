@@ -20,7 +20,7 @@ NULL
 4
 [FinStack]
 [Puertos]
-3
+4
 [Version Puerto]
 0
 HK_FDIRCtrl
@@ -54,6 +54,17 @@ BKGExecCtrl
 72
 93
 CPBKGExecCtrl
+[Version Puerto]
+0
+DroneMngCtrl
+1
+1
+0
+[Version Grafico Puerto]
+0
+49
+93
+CPDroneMngCtrl
 [FinPuertos]
 [ActoresComponente]
 0
@@ -226,14 +237,14 @@ FMngTCRejection();
 HandleTC
 0
 [Ramas]
-3
+4
 [Version Ramas]
 5
 ToReboot
 GToReboot()
 Reboot
 DSubEst
-FExecTC();
+FExecRebootTC();
  
  
  
@@ -250,7 +261,7 @@ ExecPrioTC
 true
 Ready
 DSubEst
-FExecTC();
+FExecPrioTC();
  
  
  
@@ -280,8 +291,25 @@ FFwdHK_FDIRTC();
 0
 538 344 322 255 3
 [FinGraficoRama]
+FwdBKGTC
+GFwdBKGTC()
+Ready
+DSubEst
+;
+ 
+ 
+ 
+;
+FFwdBKGTC();
+;
+;
+[GraficoRama]
+[Version GraficoRama]
+0
+545 351 322 332 3
+[FinGraficoRama]
 [Transiciones]
-3
+4
 [Version Transicion]
 5
 Init
@@ -353,6 +381,29 @@ FTCExecCtrl();
 0
 560 590 553 351 3
 [FinGraficoTransicion]
+NewEvAction
+Ready
+OSubEst
+ValidTC
+DSubEst
+;
+[Trigger]
+HK_FDIRCtrl
+SEvAction
+true
+ 
+ 
+ 
+FGetEvAction();
+;
+;
+0
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+322 451 495 590 0
+[FinGraficoTransicion]
 [VariablesConstantes]
 3
 [Version VariYConst]
@@ -377,11 +428,11 @@ CDTCExecCtrl
 Variable
 0
 [Metodos]
-11
+15
 [Version Metodos]
 21
 BasicAction
-FExecTC()
+FExecPrioTC()
 0
 0
 0
@@ -389,7 +440,36 @@ FExecTC()
 1
  
 1
-VCurrentTC.ExecTC();
+VCurrentTC.ExecPrioTC();
+BasicAction
+FExecRebootTC()
+0
+0
+0
+0
+1
+ 
+1
+VCurrentTC.ExecRebootTC();
+SendMsg
+FFwdBKGTC()
+0
+0
+0
+0
+1
+ 
+4
+	
+		// Complete Data 
+	
+	*pSBKGTC_Data=VCurrentTC;
+[ServiceRequest]
+send
+BKGExecCtrl
+SBKGTC
+CDTCHandler
+EDROOMprioNormal
 SendMsg
 FFwdHK_FDIRTC()
 0
@@ -410,6 +490,27 @@ SHK_FDIR_TC
 CDTCHandler
 EDROOMprioNormal
 MsgDataHandler
+FGetEvAction()
+0
+0
+0
+0
+1
+ 
+6
+	
+	// Data access
+VCurrentTC=varSEvAction.GetActionTCHandler();
+ 
+//aaa
+ 
+[ServiceRequest]
+Msg->data
+HK_FDIRCtrl
+SEvAction
+CDEvAction
+ 
+MsgDataHandler
 FGetTC()
 0
 0
@@ -429,7 +530,7 @@ Msg->data
 RxTC
 EDROOMIRQsignal
 CDTCMemDescriptor
- 
+EDROOMprioNormal
 BasicAction
 FInit()
 0
@@ -443,7 +544,7 @@ RxTC.MaskIRQ();
  
 RxTC.InstallHandler();
  
-pus_services_startup();
+pus_services_startup(&RxTC);
  
 RxTC.UnMaskIRQ();
 BasicAction
@@ -501,6 +602,17 @@ GAcceptTC()
  
 1
 return VAcceptReport.IsAccepted();
+Guard
+GFwdBKGTC()
+0
+0
+0
+0
+1
+ 
+2
+return VTCExecCtrl.IsBKGTC();
+ 
 Guard
 GFwdToHK_FDIR()
 0

@@ -5,8 +5,8 @@
 0
 0
 [Modificado]
-1
-1
+0
+0
 0
 [Estructura]
 [Version Estructura]
@@ -51,17 +51,12 @@ CPBKGExecCtrl
 3
 0
 [Pools]
-1
-[Version PoolDatosMens]
 0
-EDROOMPoolCDTMList
-CDTMList
-10
 [Modulos]
 1
 [Version Modulo]
 1
-icuasw_pus_services_iface
+pus_services_iface
  
 v1
  
@@ -184,7 +179,7 @@ Msg->data
 BKGExecCtrl
 SBKGTC
 CDTCHandler
-
+ 
 [MaquinasSubEstados]
 0
 [FinMaquinasSubEstados]

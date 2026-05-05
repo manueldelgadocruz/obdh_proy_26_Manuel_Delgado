@@ -6,7 +6,7 @@
 [Nombre Modelo]
 UAH_ASW
 [Modificado]
-1
+0
 [Opciones Modelo]
 [Version Opciones Modelo]
 4
@@ -19,11 +19,11 @@ UAH_ASW
 [CurrentTarget]
 0
 [MESP Directory]
-Z:\home\atcsol\eclipse-workspace\asw_pus_rtems_leon3_st20\asw
+C:\Users\ferna\Documents\GitHub\OBDH_2026\Prac7\asw_pus_rtems_5_0_leon3_st19\asw
 [MESP main Directory]
-Z:\home\atcsol\eclipse-workspace\asw_pus_rtems_leon3_st20
+C:\Users\ferna\Documents\GitHub\OBDH_2026\Prac7\asw_pus_rtems_5_0_leon3_st19
 [MESP main prototype]
-rtems_task Init (uint32_t arg)
+extern "C" rtems_task Init (uint32_t arg)
 [MESP main return]
 ;
 [Dyn Priority]
@@ -60,7 +60,7 @@ EDROOMTarget
 [Version]
 2
 DUMMY_MESCC_Lib
-4
+5
 [ActorDeployment]
 [Version]
 1
@@ -156,6 +156,34 @@ EDROOMprioNormal
 CCBKGTCExec
 UAH_ASW
 [EventsDeployment]
+0
+[ActorDeployment]
+[Version]
+1
+DroneMng
+5
+10
+EDROOMprioNormal
+ 
+CCDroneMng
+UAH_ASW
+[EventsDeployment]
+1
+[EventDeployment]
+[Version]
+1
+EvTimerTimer
+Timer
+4
+1
+0
+0
+[CEgRoomDeadLine]
+[Version]
+1
+-1
+-1
+0
 0
 [EventDeployment]
 [Version]
