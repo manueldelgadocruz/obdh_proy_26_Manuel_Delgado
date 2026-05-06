@@ -172,7 +172,7 @@ UAH_ASW
 [EventDeployment]
 [Version]
 1
-EvTimerTimer
+EvTimerDroneTimer
 Timer
 4
 1

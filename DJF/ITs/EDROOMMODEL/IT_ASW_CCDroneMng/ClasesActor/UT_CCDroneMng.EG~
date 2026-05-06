@@ -1,0 +1,450 @@
+[Version Actor SW]
+5
+0
+0
+0
+0
+[Modificado]
+1
+1
+3
+[Estructura]
+[Version Estructura]
+3
+[Parametro]
+NULL
+ 
+ 
+[FinParametro]
+[Stack]
+1
+[FinStack]
+[Puertos]
+3
+[Version Puerto]
+0
+UTTimerCtrl
+0
+1
+1
+[Version Grafico Puerto]
+0
+61
+33
+EDROOMTimingSAP
+[Version Puerto]
+0
+TesterCtrl
+1
+1
+1
+[Version Grafico Puerto]
+0
+61
+24
+CPTesterCtrl
+[Version Puerto]
+0
+WatchDogTimer
+0
+1
+1
+[Version Grafico Puerto]
+0
+61
+48
+EDROOMTimingSAP
+[FinPuertos]
+[ActoresComponente]
+2
+[Version Actor Componente]
+2
+DroneMngTester
+1
+0
+0
+10
+7
+EDROOMprioNormal
+ 
+[Version Grafico Actor Componente]
+0
+22.461
+17.6592
+40.0391
+40.2464
+CCDroneMngTester
+[Version Actor Componente]
+2
+DroneMng
+1
+0
+0
+10
+7
+EDROOMprioNormal
+ 
+[Version Grafico Actor Componente]
+0
+21.875
+46.2012
+39.4532
+68.7885
+CCDroneMng
+[FinActoresComponente]
+[Uniones]
+2
+[Version Union]
+0
+Union
+1
+TesterCtrl
+TesterCtrl
+DroneMngTester
+this
+[Version Union]
+0
+Union2
+1
+DroneCtrl
+DroneMngCtrl
+DroneMngTester
+DroneMng
+[FinUniones]
+[NumTimers]
+4
+[FinNumTimers]
+[NumMsgDef]
+10
+[FinNumMsgDef]
+[FinEstructura]
+[Comportamiento]
+[Version Comportamiento]
+3
+0
+[Pools]
+0
+[Modulos]
+1
+[Version Modulo]
+1
+pus_services_iface
+ 
+v1
+ 
+1
+1
+[Eventos]
+2
+[Event]
+[Version]
+1
+EvTimerUTTimerCtrl
+Timer
+[Event]
+[Version]
+1
+EvTimerWatchDogTimer
+Timer
+[Maquina de Estados]
+[Version Maquina de Estados]
+1
+Top
+NULL
+[Subestados]
+4
+[Version SubEstados]
+3
+I
+;
+;
+;
+;
+;
+0
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+115 62 55 55
+[FinObjetoGrafico]
+WaitEndTest
+;
+;
+;
+;
+;
+1
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+196 270 256 60
+[FinObjetoGrafico]
+CheckUTTrace
+FCheckUTLogs();
+;
+;
+;
+;
+1
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+242 505 157 70
+[FinObjetoGrafico]
+WaitStartFlightPlan
+;
+;
+;
+;
+;
+1
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+179 146 259 60
+[FinObjetoGrafico]
+[PuntosEleccion]
+1
+[Version PuntosEleccion]
+2
+CheckEnd
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+296 395 35 35
+[FinObjetoGrafico]
+CheckEnd
+0
+[Ramas]
+2
+[Version Ramas]
+5
+ProgNextTimer
+true
+WaitEndTest
+DSubEst
+FProgWaitEnd();
+ 
+ 
+ 
+;
+;
+;
+;
+[GraficoRama]
+[Version GraficoRama]
+0
+296 412 217 330 3
+[FinGraficoRama]
+EndTest
+GEndTest()
+CheckUTTrace
+DSubEst
+;
+ 
+ 
+ 
+;
+;
+;
+;
+[GraficoRama]
+[Version GraficoRama]
+0
+313 429 314 505 0
+[FinGraficoRama]
+[Transiciones]
+4
+[Version Transicion]
+5
+CheckEnd
+WaitEndTest
+OSubEst
+CheckEnd
+DPEleccion
+FNextCheck();
+[Trigger]
+UTTimerCtrl
+EDROOMSignalTimeout
+true
+ 
+ 
+ 
+;
+;
+;
+0
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+378 330 313 395 2
+[FinGraficoTransicion]
+WatchDog
+EDROOMEdge
+OBorde
+CheckUTTrace
+DSubEst
+;
+[Trigger]
+WatchDogTimer
+EDROOMSignalTimeout
+true
+ 
+ 
+ 
+;
+;
+;
+0
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+30 533 242 537 0
+[FinGraficoTransicion]
+Init
+I
+OSubEstI
+WaitStartFlightPlan
+DSubEst
+FProgWatchDog();
+[Trigger]
+EDROOMsl
+EDROOMStart
+true
+ 
+ 
+ 
+;
+;
+;
+0
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+167 98 292 146 0
+[FinGraficoTransicion]
+StarFlightPlan
+WaitStartFlightPlan
+OSubEst
+WaitEndTest
+DSubEst
+FProgWaitEnd();
+[Trigger]
+TesterCtrl
+SStartFlightPlan
+true
+ 
+ 
+ 
+;
+;
+;
+0
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+303 206 313 270 0
+[FinGraficoTransicion]
+[VariablesConstantes]
+2
+[Version VariYConst]
+0
+CEndTest
+TEDROOMUInt16
+11
+Constante
+0
+[Version VariYConst]
+0
+VCheckTimes
+TEDROOMUInt8
+0
+Variable
+0
+[Metodos]
+5
+[Version Metodos]
+21
+BasicAction
+FCheckUTLogs()
+0
+0
+0
+0
+1
+ 
+1
+ut_ccdrone_mng_check_trace();
+BasicAction
+FNextCheck()
+0
+0
+0
+0
+1
+ 
+1
+VCheckTimes++;
+Inform
+FProgWaitEnd()
+0
+0
+0
+0
+1
+ 
+5
+	 
+	//Timing Service useful methods
+	 
+	interval =  Pr_Time(0,100000);
+	printf(".");
+[ServiceRequest]
+InformIn
+UTTimerCtrl
+EDROOMSignalTimeout
+CDTCHandler
+EDROOMprioNormal
+Inform
+FProgWatchDog()
+0
+0
+0
+0
+1
+ 
+4
+	 
+	//Timing Service useful methods
+	 
+	interval = Pr_Time(10,0); // interval of X sec + Y microsec
+[ServiceRequest]
+InformIn
+WatchDogTimer
+EDROOMSignalTimeout
+CDTCHandler
+EDROOMprioNormal
+Guard
+GEndTest()
+0
+0
+0
+0
+1
+ 
+1
+return (VCheckTimes>= CEndTest);
+[MaquinasSubEstados]
+0
+[FinMaquinasSubEstados]
+[Fin Maquina de Estados]
+[FinComportamiento]

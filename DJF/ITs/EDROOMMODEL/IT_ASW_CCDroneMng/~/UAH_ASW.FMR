@@ -78,7 +78,7 @@ NULL
 1
 EvTimerTimer
 Timer
-1852797508
+1
 1
 0
 0
@@ -106,7 +106,7 @@ UAH_ASW
 1
 EvIRQRxTC
 External
-1
+2
 1
 0
 0
@@ -134,7 +134,7 @@ UAH_ASW
 1
 EvTimerHK_FDIRTimer
 Timer
-2
+3
 1
 0
 0
@@ -172,9 +172,9 @@ UAH_ASW
 [EventDeployment]
 [Version]
 1
-EvTimerTimer
+EvTimerDroneTimer
 Timer
-3
+4
 1
 0
 0

@@ -29,7 +29,7 @@ HK_FDIRCtrl
 0
 [Version Grafico Puerto]
 0
-14
+12
 93
 CPHK_FDIRCtrl
 [Version Puerto]
@@ -51,20 +51,20 @@ BKGExecCtrl
 0
 [Version Grafico Puerto]
 0
-47
+46
 93
 CPBKGExecCtrl
 [Version Puerto]
 0
-DroneMngCtrl
+DroneCtrl
 1
 1
 0
 [Version Grafico Puerto]
 0
-72
+78
 93
-CPDroneMngCtrl
+CPDroneCtrl
 [FinPuertos]
 [ActoresComponente]
 0
@@ -140,7 +140,7 @@ I
 [ObjetoGrafico]
 [Version Objeto Grafico]
 0
-73 73 55 55
+75 108 55 55
 [FinObjetoGrafico]
 Ready
 ;
@@ -153,7 +153,7 @@ Ready
 [ObjetoGrafico]
 [Version Objeto Grafico]
 0
-181 146 143 315
+171 147 143 315
 [FinObjetoGrafico]
 Reboot
 FReboot();
@@ -166,7 +166,7 @@ FReboot();
 [ObjetoGrafico]
 [Version Objeto Grafico]
 0
-509 96 90 60
+578 182 90 60
 [FinObjetoGrafico]
 ValidTC
 ;
@@ -179,7 +179,7 @@ ValidTC
 [ObjetoGrafico]
 [Version Objeto Grafico]
 0
-485 590 143 43
+507 638 143 43
 [FinObjetoGrafico]
 [PuntosEleccion]
 2
@@ -190,14 +190,14 @@ NewRxTC
 [ObjetoGrafico]
 [Version Objeto Grafico]
 0
-235 594 35 35
+232 646 35 35
 [FinObjetoGrafico]
 HandleTC
 0
 [ObjetoGrafico]
 [Version Objeto Grafico]
 0
-536 317 35 35
+552 293 35 35
 [FinObjetoGrafico]
 NewRxTC
 0
@@ -220,7 +220,7 @@ FMngTCAcceptation();
 [GraficoRama]
 [Version GraficoRama]
 0
-269 611 485 613 0
+266 663 507 661 1
 [FinGraficoRama]
 NotAccepted
 true
@@ -237,12 +237,12 @@ FMngTCRejection();
 [GraficoRama]
 [Version GraficoRama]
 0
-235 611 181 420 3
+232 663 171 421 3
 [FinGraficoRama]
 HandleTC
 0
 [Ramas]
-4
+5
 [Version Ramas]
 5
 ToReboot
@@ -260,7 +260,7 @@ FExecRebootTC();
 [GraficoRama]
 [Version GraficoRama]
 0
-553 317 550 156 3
+569 293 619 242 1
 [FinGraficoRama]
 ExecPrioTC
 true
@@ -277,7 +277,7 @@ FExecPrioTC();
 [GraficoRama]
 [Version GraficoRama]
 0
-536 334 324 159 3
+552 310 314 160 3
 [FinGraficoRama]
 FwdHK_FDIRTC
 GFwdToHK_FDIR()
@@ -294,7 +294,7 @@ FFwdHK_FDIRTC();
 [GraficoRama]
 [Version GraficoRama]
 0
-538 344 324 255 3
+554 320 314 256 3
 [FinGraficoRama]
 FwdBKGTC
 GFwdBKGTC()
@@ -311,7 +311,24 @@ FFwdBKGTC();
 [GraficoRama]
 [Version GraficoRama]
 0
-545 351 324 332 3
+561 327 314 333 2
+[FinGraficoRama]
+FwdDroneTC
+GFwdDroneTC()
+Ready
+DSubEst
+;
+
+ 
+
+;
+;
+;
+;
+[GraficoRama]
+[Version GraficoRama]
+0
+569 327 314 422 2
 [FinGraficoRama]
 [Transiciones]
 4
@@ -325,7 +342,7 @@ DSubEst
 FInit();
 [Trigger]
 *
-SDroneReady
+SEvAction
 true
  
  
@@ -338,7 +355,7 @@ true
 [GraficoTransicion]
 [Version GraficoTransicion]
 0
-119 119 181 184 0
+121 154 171 185 0
 [FinGraficoTransicion]
 NewRxTC
 Ready
@@ -361,7 +378,7 @@ FGetTC();
 [GraficoTransicion]
 [Version GraficoTransicion]
 0
-254 461 252 594 2
+244 462 249 646 0
 [FinGraficoTransicion]
 HandleTC
 ValidTC
@@ -384,7 +401,7 @@ FTCExecCtrl();
 [GraficoTransicion]
 [Version GraficoTransicion]
 0
-560 590 553 351 3
+582 638 569 327 3
 [FinGraficoTransicion]
 NewEvAction
 Ready
@@ -407,7 +424,7 @@ FGetEvAction();
 [GraficoTransicion]
 [Version GraficoTransicion]
 0
-324 451 495 590 0
+314 452 517 638 0
 [FinGraficoTransicion]
 [VariablesConstantes]
 3
@@ -433,7 +450,7 @@ CDTCExecCtrl
 Variable
 0
 [Metodos]
-16
+17
 [Version Metodos]
 21
 BasicAction
@@ -639,23 +656,25 @@ GToReboot()
 1
 return VTCExecCtrl.IsRebootTC();
 BasicAction
-FInvokeDroneSetUp()
+FFwdDroneTC()
 0
 0
 0
 0
 1
-Invokes drone setup during TCManager initialization
-9
-CDDroneConfig * pSDroneSetUp_Data = EDROOMPoolCDDroneConfig.AllocData();
 
-pSDroneSetUp_Data->ZMinBeforeAdvance = 10;
-pSDroneSetUp_Data->DefaultKp = 0.2;
-pSDroneSetUp_Data->DefaultKi = 0.15;
-pSDroneSetUp_Data->DefaultKd = 0.05;
+1
+DroneCtrl.send(SDroneTC, pSDroneTC_Data,. . . ); 
+Guard
+GFwdDroneTC()
+0
+0
+0
+0
+1
 
-MsgBack = DroneCtrl.invoke(SDroneSetUp, pSDroneSetUp_Data,
-                           &EDROOMPoolCDDroneConfig);
+1
+return VTCExecCtrl.IsDroneTC();
 [MaquinasSubEstados]
 1
 Ready
@@ -679,7 +698,7 @@ StandBy
 [ObjetoGrafico]
 [Version Objeto Grafico]
 0
-139 95 90 60
+137 78 90 60
 [FinObjetoGrafico]
 [PuntosEleccion]
 0
@@ -689,35 +708,55 @@ StandBy
 1
 [Version Transicion]
 5
-TransicionIDSU
+TransicionISB
 Init
 OPEntrada
 StandBy
 DSubEst
-FInvokeDroneSetUp();
+;
 [Trigger]
 *
-SDroneReady
+SEvAction
 true
  
  
  
 ;
 ;
-;
+FInvokeDroneSetUp(){;
 0
 ;
 [GraficoTransicion]
 [Version GraficoTransicion]
 0
-50 130 139 127 1
+30 110 137 112 0
 [FinGraficoTransicion]
 [VariablesConstantes]
 0
 [Metodos]
-0
+1
 [Version Metodos]
 21
+InvokeMsg
+FInvokeDroneSetUp()
+0
+0
+0
+0
+1
+
+5
+	
+pSDroneSetUp_Data->ZMinBeforeAdvance=10;
+pSDroneSetUp_Data->DefaultKp=0.2;
+pSDroneSetUp_Data->DefaultKi=0.15;
+pSDroneSetUp_Data->DefaultKd=0.05;
+[ServiceRequest]
+invoke
+DroneCtrl
+SDroneSetUp
+CDDroneConfig
+EDROOMprioVeryHigh
 [MaquinasSubEstados]
 0
 [FinMaquinasSubEstados]

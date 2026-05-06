@@ -29,7 +29,7 @@ HK_FDIRCtrl
 0
 [Version Grafico Puerto]
 0
-10
+12
 93
 CPHK_FDIRCtrl
 [Version Puerto]
@@ -51,20 +51,20 @@ BKGExecCtrl
 0
 [Version Grafico Puerto]
 0
-89
+46
 93
 CPBKGExecCtrl
 [Version Puerto]
 0
-DroneMngCtrl
+DroneCtrl
 1
 1
 0
 [Version Grafico Puerto]
 0
-44
+78
 93
-CPDroneMngCtrl
+CPDroneCtrl
 [FinPuertos]
 [ActoresComponente]
 0
@@ -135,7 +135,7 @@ I
 [ObjetoGrafico]
 [Version Objeto Grafico]
 0
-40 140 55 55
+73 73 55 55
 [FinObjetoGrafico]
 Ready
 ;
@@ -148,7 +148,7 @@ Ready
 [ObjetoGrafico]
 [Version Objeto Grafico]
 0
-124 148 143 315
+179 146 143 315
 [FinObjetoGrafico]
 Reboot
 FReboot();
@@ -232,7 +232,7 @@ FMngTCRejection();
 [GraficoRama]
 [Version GraficoRama]
 0
-235 611 124 422 3
+235 611 179 420 3
 [FinGraficoRama]
 HandleTC
 0
@@ -272,7 +272,7 @@ FExecPrioTC();
 [GraficoRama]
 [Version GraficoRama]
 0
-536 334 267 161 3
+536 334 322 159 3
 [FinGraficoRama]
 FwdHK_FDIRTC
 GFwdToHK_FDIR()
@@ -289,7 +289,7 @@ FFwdHK_FDIRTC();
 [GraficoRama]
 [Version GraficoRama]
 0
-538 344 267 257 3
+538 344 322 255 3
 [FinGraficoRama]
 FwdBKGTC
 GFwdBKGTC()
@@ -306,7 +306,7 @@ FFwdBKGTC();
 [GraficoRama]
 [Version GraficoRama]
 0
-545 351 267 334 3
+545 351 322 332 3
 [FinGraficoRama]
 [Transiciones]
 4
@@ -333,7 +333,7 @@ true
 [GraficoTransicion]
 [Version GraficoTransicion]
 0
-86 186 124 186 1
+119 119 179 184 0
 [FinGraficoTransicion]
 NewRxTC
 Ready
@@ -356,7 +356,7 @@ FGetTC();
 [GraficoTransicion]
 [Version GraficoTransicion]
 0
-197 463 252 594 0
+252 461 252 594 2
 [FinGraficoTransicion]
 HandleTC
 ValidTC
@@ -402,7 +402,7 @@ FGetEvAction();
 [GraficoTransicion]
 [Version GraficoTransicion]
 0
-267 453 495 590 0
+322 451 495 590 0
 [FinGraficoTransicion]
 [VariablesConstantes]
 3
@@ -634,71 +634,7 @@ GToReboot()
 1
 return VTCExecCtrl.IsRebootTC();
 [MaquinasSubEstados]
-1
-Ready
-[Maquina de Estados]
-[Version Maquina de Estados]
-1
-Ready
-Top
-[Subestados]
-1
-[Version SubEstados]
-3
-SubEstado0
-;
-;
-;
-;
-;
 0
-0
-[ObjetoGrafico]
-[Version Objeto Grafico]
-0
-110 92 90 60
-[FinObjetoGrafico]
-[PuntosEleccion]
-0
-[Version PuntosEleccion]
-2
-[Transiciones]
-1
-[Version Transicion]
-5
-Transicion0
-Init
-OPEntrada
-SubEstado0
-DSubEst
-;
-[Trigger]
-EDROOMsl
-EDROOMStart
-true
- 
- 
- 
-;
-;
-;
-0
-;
-[GraficoTransicion]
-[Version GraficoTransicion]
-0
-50 130 110 121 1
-[FinGraficoTransicion]
-[VariablesConstantes]
-0
-[Metodos]
-0
-[Version Metodos]
-21
-[MaquinasSubEstados]
-0
-[FinMaquinasSubEstados]
-[Fin Maquina de Estados]
 [FinMaquinasSubEstados]
 [Fin Maquina de Estados]
 [FinComportamiento]
