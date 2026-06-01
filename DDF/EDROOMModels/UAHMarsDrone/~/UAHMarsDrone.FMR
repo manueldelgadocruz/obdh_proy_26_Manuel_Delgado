@@ -93,7 +93,7 @@ Timer
 [Version]
 1
 DroneMng
-2
+17476724
 10
 EDROOMprioNormal
  
@@ -104,7 +104,7 @@ UAHMarsDrone
 [EventDeployment]
 [Version]
 1
-EvTimerTimer
+EvTimerDroneTimer
 Timer
 0
 1

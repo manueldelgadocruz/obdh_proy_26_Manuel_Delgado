@@ -11,14 +11,14 @@
 	// CONSTRUCTORS***********************************************
 
 CCDroneMng::EDROOM_CTX_Top_0::EDROOM_CTX_Top_0(CCDroneMng &act,
-	 Pr_Time & EDROOMpVarVNextCtrl; ):
+	 Pr_Time & EDROOMpVarVNextCtrl ):
 
 	EDROOMcomponent(act),
 	Msg(EDROOMcomponent.Msg),
 	MsgBack(EDROOMcomponent.MsgBack),
 	DroneMngCtrl(EDROOMcomponent.DroneMngCtrl),
-	Timer(EDROOMcomponent.Timer),
-	VNextCtrl;(EDROOMpVarVNextCtrl;)
+	DroneTimer(EDROOMcomponent.DroneTimer),
+	VNextCtrl(EDROOMpVarVNextCtrl)
 {
 }
 
@@ -28,8 +28,8 @@ CCDroneMng::EDROOM_CTX_Top_0::EDROOM_CTX_Top_0(EDROOM_CTX_Top_0 &context):
 	Msg(context.Msg),
 	MsgBack(context.MsgBack),
 	DroneMngCtrl(context.DroneMngCtrl),
-	Timer(context.Timer),
-	VNextCtrl;(context.VNextCtrl;)
+	DroneTimer(context.DroneTimer),
+	VNextCtrl(context.VNextCtrl)
 {
 
 }
@@ -64,9 +64,7 @@ void	CCDroneMng::EDROOM_CTX_Top_0::FDroneSelfTest()
 
 {
 
- 
 pus_service129_drone_selftest();
- 
 
 }
 
@@ -77,9 +75,6 @@ void	CCDroneMng::EDROOM_CTX_Top_0::FExecDroneTC()
 {
    //Handle Msg->data
   CDTCHandler & varSDroneTC = *(CDTCHandler *)Msg->data;
- 
-CDTCHandler & varSDroneSetUp = *( CDTCHandler *) Msg->data;
- 
 varSDroneTC.ExecDroneTC();
 
 }
@@ -90,7 +85,6 @@ void	CCDroneMng::EDROOM_CTX_Top_0::FFlightCtrlAlgorithm()
 
 {
 
- 
 pus_service129_flight_ctrl_algorithm();
 
 }
@@ -101,10 +95,8 @@ void	CCDroneMng::EDROOM_CTX_Top_0::FGetConfig()
 
 {
    //Handle Msg->data
-  CDDroneConfig & varSDroneSetup = *(CDDroneConfig *)Msg->data;
-	
-		pus_service129_setup(varSDroneSetUp);
- 
+  CDDroneConfig & varSDroneSetUp = *(CDDroneConfig *)Msg->data;
+pus_service129_setup(varSDroneSetUp);
 
 }
 
@@ -113,16 +105,17 @@ void	CCDroneMng::EDROOM_CTX_Top_0::FGetConfig()
 void	CCDroneMng::EDROOM_CTX_Top_0::FInitFlightPlan()
 
 {
-
- 
+   //Define absolute time
+  Pr_Time time;
 Pr_Time time;
-time.GetTime(); // Get current monotonic time
-time+=Pr_Time(0,100); // Add X sec + Y microsec
-VNextCtrl=time;
-pus_service129_init_flight_plan();
- VNextCtrl.InformAt(time);
  
-
+time.GetTime();
+time += Pr_Time(0, 100000);
+VNextCtrl = time;
+ 
+pus_service129_init_flight_plan();
+   //Program absolute timer 
+   DroneTimer.InformAt( time ); 
 }
 
 
@@ -130,15 +123,14 @@ pus_service129_init_flight_plan();
 void	CCDroneMng::EDROOM_CTX_Top_0::FProgNextCtrl()
 
 {
-
- 
+   //Define absolute time
+  Pr_Time time;
 Pr_Time time;
-VNextCtrl+= Pr_Time(0,100); // Add X sec + Y microsec
-time=VNextCtrl;
  
- VNextCtrl.InformAt(time);
- 
-
+VNextCtrl += Pr_Time(0, 100000);
+time = VNextCtrl;
+   //Program absolute timer 
+   DroneTimer.InformAt( time ); 
 }
 
 
@@ -147,11 +139,9 @@ void	CCDroneMng::EDROOM_CTX_Top_0::FReplyDroneReady()
 
 {
 
-pus_service129_drone_ready(); 
-VNextDescentCtrl+=Pr_Time(1,0); // Add X sec + Y microsec
- Msg->Reply(SDroneReady);
- 
-
+pus_service129_drone_ready();
+   //Reply synchronous communication
+   Msg->reply(SDroneReady); 
 }
 
 
@@ -160,9 +150,7 @@ void	CCDroneMng::EDROOM_CTX_Top_0::FToReady()
 
 {
 
- 
- pus_service129_drone_ready();
- 
+pus_service129_drone_ready();
 
 }
 
@@ -172,7 +160,6 @@ bool	CCDroneMng::EDROOM_CTX_Top_0::GExecFlightPlan()
 
 {
 
- 
 return pus_service129_flight_plan_ready();
 
 }
@@ -183,11 +170,7 @@ bool	CCDroneMng::EDROOM_CTX_Top_0::GFlightPlanDone()
 
 {
 
- 
- return pus_service129_flight_plan_done();
- 
-VNextDescentCtrl+= Pr_Time(1,0); // Add X sec + Y microsec
- 
+return pus_service129_flight_plan_done();
 
 }
 
@@ -209,7 +192,7 @@ VNextDescentCtrl+= Pr_Time(1,0); // Add X sec + Y microsec
 
 CCDroneMng::EDROOM_SUB_Top_0::EDROOM_SUB_Top_0 (CCDroneMng&act):
 		EDROOM_CTX_Top_0(act,
-			VNextCtrl;)
+			VNextCtrl)
 {
 
 }
@@ -238,6 +221,45 @@ void CCDroneMng::EDROOM_SUB_Top_0::EDROOMBehaviour()
 				//Next State is SelfTest
 				edroomNextState = SelfTest;
 				break;
+			//Next Transition is ToReady
+			case (ToReady):
+				//Msg->Data Handling 
+				FGetConfig();
+				//Reply Synchronous Message 
+				FReplyDroneReady();
+				//Next State is Ready
+				edroomNextState = Ready;
+				break;
+			//To Choice Point ExecTC
+			case (ExecTC):
+
+				//Msg->Data Handling 
+				FExecDroneTC();
+				//Evaluate Branch InitFlightPlan
+				if( GExecFlightPlan() )
+				{
+					//Execute Action 
+					FInitFlightPlan();
+
+					//Branch taken is ExecTC_InitFlightPlan
+					edroomCurrentTrans.localId =
+						ExecTC_InitFlightPlan;
+
+					//Next State is FlightPlan
+					edroomNextState = FlightPlan;
+				 } 
+				//Default Branch WaitFP
+				else
+				{
+
+					//Branch taken is ExecTC_WaitFP
+					edroomCurrentTrans.localId =
+						ExecTC_WaitFP;
+
+					//Next State is Ready
+					edroomNextState = Ready;
+				 } 
+				break;
 			//To Choice Point CtrlAlgorithm
 			case (CtrlAlgorithm):
 
@@ -259,6 +281,8 @@ void CCDroneMng::EDROOM_SUB_Top_0::EDROOMBehaviour()
 				//Default Branch ProgNextCtrl
 				else
 				{
+					//Execute Action 
+					FProgNextCtrl();
 
 					//Branch taken is CtrlAlgorithm_ProgNextCtrl
 					edroomCurrentTrans.localId =
@@ -266,43 +290,6 @@ void CCDroneMng::EDROOM_SUB_Top_0::EDROOMBehaviour()
 
 					//Next State is FlightPlan
 					edroomNextState = FlightPlan;
-				 } 
-				break;
-			//Next Transition is Transicion1
-			case (Transicion1):
-				//Msg->Data Handling 
-				FGetConfig();
-				//Execute Action 
-				FReplyDroneReady();
-				//Next State is Ready
-				edroomNextState = Ready;
-				break;
-			//To Choice Point ExecTC
-			case (ExecTC):
-
-				//Msg->Data Handling 
-				FExecDroneTC();
-				//Evaluate Branch InitFlightPlan
-				if( GExecFlightPlan() )
-				{
-
-					//Branch taken is ExecTC_InitFlightPlan
-					edroomCurrentTrans.localId =
-						ExecTC_InitFlightPlan;
-
-					//Next State is FlightPlan
-					edroomNextState = FlightPlan;
-				 } 
-				//Default Branch WaitFP
-				else
-				{
-
-					//Branch taken is ExecTC_WaitFP
-					edroomCurrentTrans.localId =
-						ExecTC_WaitFP;
-
-					//Next State is Ready
-					edroomNextState = Ready;
 				 } 
 				break;
 		}
@@ -403,13 +390,13 @@ TEDROOMTransId CCDroneMng::EDROOM_SUB_Top_0::EDROOMSelfTestArrival()
 		switch(Msg->signal)
 		{
 
-			case (SDroneSetup): 
+			case (SDroneSetUp): 
 
 				 if (*Msg->GetPInterface() == DroneMngCtrl)
 				{
 
-					//Next transition is  Transicion1
-					edroomCurrentTrans.localId= Transicion1;
+					//Next transition is  ToReady
+					edroomCurrentTrans.localId= ToReady;
 					edroomCurrentTrans.distanceToContext = 0;
 					edroomValidMsg=true;
 				 }
@@ -509,7 +496,7 @@ TEDROOMTransId CCDroneMng::EDROOM_SUB_Top_0::EDROOMFlightPlanArrival()
 
 			case (EDROOMSignalTimeout): 
 
-				 if (*Msg->GetPInterface() == Timer)
+				 if (*Msg->GetPInterface() == DroneTimer)
 				{
 
 					//Next transition is  CtrlAlgorithm

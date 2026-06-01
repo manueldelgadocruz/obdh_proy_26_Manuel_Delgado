@@ -7,6 +7,6 @@
 
 sai pus_services_iface{
 
-	uri := .pus_services_iface;
+	uri :=mclev Package:.pus_services_iface;
 	version :=v1;
 };

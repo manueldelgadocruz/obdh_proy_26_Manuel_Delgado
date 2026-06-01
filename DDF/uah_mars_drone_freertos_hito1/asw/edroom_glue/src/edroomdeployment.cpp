@@ -63,7 +63,7 @@ void CEDROOMSystemCommSAP::RegisterInterfaces(){
 	m_localCommSAP.RegisterInterface(1, mp_comp1->Timer, mp_comp1);
  
 	// Register Interface for Component 2
-	m_localCommSAP.RegisterInterface(1, mp_comp2->Timer, mp_comp2);
+	m_localCommSAP.RegisterInterface(1, mp_comp2->DroneTimer, mp_comp2);
 	m_localCommSAP.RegisterInterface(2, mp_comp2->DroneMngCtrl, mp_comp2);
  
 }

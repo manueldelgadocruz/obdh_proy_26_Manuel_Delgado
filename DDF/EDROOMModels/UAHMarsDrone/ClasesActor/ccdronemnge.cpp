@@ -25,7 +25,7 @@ CCDroneMng::CCDroneMng(TEDROOMComponentID id,
 
 		// *******************  Timers  ********************
 
-		Timer(&EDROOMtimingSAP, 2 ),
+		DroneTimer(&EDROOMtimingSAP, 2 ),
 
 		// ***************	Top State  *****************
 

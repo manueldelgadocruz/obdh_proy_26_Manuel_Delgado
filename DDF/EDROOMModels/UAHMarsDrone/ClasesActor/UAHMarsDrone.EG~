@@ -29,7 +29,7 @@ Timer
 1
 [Version Grafico Puerto]
 0
-13
+10
 49
 EDROOMTimingSAP
 [FinPuertos]
@@ -47,10 +47,10 @@ EDROOMprioNormal
  
 [Version Grafico Actor Componente]
 0
-27.1485
-63.8603
-57.8125
-77.4127
+61.3281
+40.8624
+78.9062
+63.4497
 CCDroneMng
 [FinActoresComponente]
 [Uniones]
