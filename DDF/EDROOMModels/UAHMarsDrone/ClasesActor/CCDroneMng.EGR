@@ -408,9 +408,7 @@ FInitFlightPlan()
 0
 1
  
-7
-Pr_Time time;
- 
+5
 time.GetTime();
 time += Pr_Time(0, 100000);
 VNextCtrl = time;
@@ -420,7 +418,7 @@ pus_service129_init_flight_plan();
 InformAt
 DroneTimer
 EDROOMSignalTimeout
-NULL
+
 EDROOMprioVeryHigh
 Inform
 FProgNextCtrl()
@@ -430,16 +428,14 @@ FProgNextCtrl()
 0
 1
  
-4
-Pr_Time time;
- 
+2
 VNextCtrl += Pr_Time(0, 100000);
 time = VNextCtrl;
 [ServiceRequest]
 InformAt
 DroneTimer
 EDROOMSignalTimeout
-NULL
+
 EDROOMprioVeryHigh
 ReplyMsg
 FReplyDroneReady()

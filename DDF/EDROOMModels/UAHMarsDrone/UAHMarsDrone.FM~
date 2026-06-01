@@ -19,9 +19,9 @@ UAHMarsDrone
 [CurrentTarget]
 0
 [MESP Directory]
-C:\Users\manud\Documents\Proyectosucio\obdh_proy_26_ManuDelgado\DDF\uah_mars_drone_freertos_hito1\asw
+C:\Users\manud\Documents\GitHub\obdh_proy_26_Manuel_Delgado\DDF\uah_mars_drone_freertos_hito1\asw
 [MESP main Directory]
-C:\Users\manud\Documents\Proyectosucio\obdh_proy_26_ManuDelgado\DDF\uah_mars_drone_freertos_hito1
+C:\Users\manud\Documents\GitHub\obdh_proy_26_Manuel_Delgado\DDF\uah_mars_drone_freertos_hito1
 [MESP main prototype]
 int main (void)
 [MESP main return]

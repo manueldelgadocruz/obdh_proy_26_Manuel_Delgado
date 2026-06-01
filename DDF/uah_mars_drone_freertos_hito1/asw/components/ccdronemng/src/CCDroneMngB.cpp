@@ -107,8 +107,6 @@ void	CCDroneMng::EDROOM_CTX_Top_0::FInitFlightPlan()
 {
    //Define absolute time
   Pr_Time time;
-Pr_Time time;
- 
 time.GetTime();
 time += Pr_Time(0, 100000);
 VNextCtrl = time;
@@ -125,8 +123,6 @@ void	CCDroneMng::EDROOM_CTX_Top_0::FProgNextCtrl()
 {
    //Define absolute time
   Pr_Time time;
-Pr_Time time;
- 
 VNextCtrl += Pr_Time(0, 100000);
 time = VNextCtrl;
    //Program absolute timer 
