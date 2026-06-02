@@ -1,0 +1,368 @@
+[Version Actor SW]
+5
+0
+0
+0
+0
+[Modificado]
+0
+0
+0
+[Estructura]
+[Version Estructura]
+3
+[Parametro]
+NULL
+ 
+ 
+[FinParametro]
+[Stack]
+1
+[FinStack]
+[Puertos]
+3
+[Version Puerto]
+0
+DroneCtrl
+1
+1
+0
+[Version Grafico Puerto]
+0
+44
+93
+CPDroneCtrl
+[Version Puerto]
+0
+Timer
+0
+1
+1
+[Version Grafico Puerto]
+0
+32
+29
+EDROOMTimingSAP
+[Version Puerto]
+0
+TesterCtrl
+0
+1
+0
+[Version Grafico Puerto]
+0
+93
+37
+CPTesterCtrl
+[FinPuertos]
+[ActoresComponente]
+0
+[FinActoresComponente]
+[Uniones]
+0
+[FinUniones]
+[NumTimers]
+2
+[FinNumTimers]
+[NumMsgDef]
+10
+[FinNumMsgDef]
+[FinEstructura]
+[Comportamiento]
+[Version Comportamiento]
+3
+0
+[Pools]
+2
+[Version PoolDatosMens]
+0
+EDROOMPoolCDDroneConfig
+CDDroneConfig
+10
+[Version PoolDatosMens]
+0
+EDROOMPoolCDTCHandler
+CDTCHandler
+10
+[Modulos]
+0
+[Eventos]
+1
+[Event]
+[Version]
+1
+EvTimerTimer
+Timer
+[Maquina de Estados]
+[Version Maquina de Estados]
+1
+Top
+NULL
+[Subestados]
+3
+[Version SubEstados]
+3
+I
+;
+;
+;
+;
+;
+0
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+73 73 55 55
+[FinObjetoGrafico]
+DroneReady
+FProgNextTCExec();
+;
+;
+;
+;
+1
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+193 184 172 69
+[FinObjetoGrafico]
+DroneInFlightPlan
+;
+;
+;
+;
+;
+1
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+427 341 159 93
+[FinObjetoGrafico]
+[PuntosEleccion]
+1
+[Version PuntosEleccion]
+2
+SendTC
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+259 370 35 35
+[FinObjetoGrafico]
+SendTC
+0
+[Ramas]
+2
+[Version Ramas]
+5
+ProgNextTC
+GPendingTCs()
+DroneReady
+DSubEst
+FProgNextTCExec();
+ 
+ 
+ 
+;
+;
+;
+;
+[GraficoRama]
+[Version GraficoRama]
+0
+259 387 209 253 3
+[FinGraficoRama]
+StartFlightPlan
+true
+DroneInFlightPlan
+DSubEst
+FStartFlightPlan();
+ 
+ 
+ 
+;
+FStartFligthPlan();
+;
+;
+[GraficoRama]
+[Version GraficoRama]
+0
+293 387 427 387 1
+[FinGraficoRama]
+[Transiciones]
+2
+[Version Transicion]
+5
+Init
+I
+OSubEstI
+DroneReady
+DSubEst
+;
+[Trigger]
+EDROOMsl
+EDROOMStart
+true
+ 
+ 
+ 
+;
+;
+FUTInvokeSetUp();
+0
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+116 121 193 221 0
+[FinGraficoTransicion]
+SendTC
+DroneReady
+OSubEst
+SendTC
+DPEleccion
+;
+[Trigger]
+Timer
+EDROOMSignalTimeout
+true
+ 
+ 
+ 
+;
+FSendDroneTC();
+;
+0
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+275 253 276 370 0
+[FinGraficoTransicion]
+[VariablesConstantes]
+2
+[Version VariYConst]
+0
+CTestTCs
+TEDROOMUInt8
+3
+Constante
+0
+[Version VariYConst]
+0
+VTCCounter
+TEDROOMUInt8
+0
+Variable
+0
+[Metodos]
+6
+[Version Metodos]
+21
+Inform
+FProgNextTCExec()
+0
+0
+0
+1
+#include <stdio.h>
+1
+ 
+5
+	 
+	//Timing Service useful methods
+	 
+	
+	interval = Pr_Time(1,0); // interval of X sec + Y microsec
+[ServiceRequest]
+InformIn
+Timer
+EDROOMSignalTimeout
+CDTCHandler
+EDROOMprioVeryHigh
+SendMsg
+FSendDroneTC()
+0
+0
+0
+1
+#include <stdio.h>
+1
+ 
+8
+	
+		// Complete Data 
+	
+	//*pSDroneTC_Data= //Dummy Data
+ 
+printf("SendDrone TC \n");
+ 
+VTCCounter++;
+[ServiceRequest]
+send
+DroneCtrl
+SDroneTC
+CDTCHandler
+EDROOMprioNormal
+BasicAction
+FStartFlightPlan()
+0
+0
+0
+0
+1
+ 
+1
+printf("Drone In Flight Plan  \n");
+SendMsg
+FStartFligthPlan()
+0
+0
+0
+0
+1
+ 
+0
+[ServiceRequest]
+send
+TesterCtrl
+SStartFlightPlan
+NULL
+EDROOMprioNormal
+InvokeMsg
+FUTInvokeSetUp()
+0
+0
+0
+0
+1
+ 
+4
+	
+		// Complete Data 
+	
+	//*pSDroneSetUp_Data= //Data is Dummy
+[ServiceRequest]
+invoke
+DroneCtrl
+SDroneSetUp
+CDDroneConfig
+EDROOMprioVeryHigh
+Guard
+GPendingTCs()
+0
+0
+0
+0
+1
+ 
+1
+return (VTCCounter<CTestTCs);
+[MaquinasSubEstados]
+0
+[FinMaquinasSubEstados]
+[Fin Maquina de Estados]
+[FinComportamiento]

@@ -1,0 +1,179 @@
+[Version Proyecto]
+4
+[Modelo]
+[Version]
+3
+[Nombre Modelo]
+UT_CCDroneMng
+[Modificado]
+0
+[Opciones Modelo]
+[Version Opciones Modelo]
+4
+[AnadirInfDep]
+0
+[MemDin]
+1
+[HandleExcep]
+0
+[CurrentTarget]
+0
+[MESP Directory]
+z:\home\atcsol\OBDH_2026-workspace\ut_ccdronemng_freertos\asw
+[MESP main Directory]
+z:\home\atcsol\OBDH_2026-workspace\ut_ccdronemng_freertos
+[MESP main prototype]
+int main (void)
+[MESP main return]
+return 0;
+[Dyn Priority]
+0
+[Main Cmp Priority]
+EDROOMprioNormal
+[Deployment Prologue]
+0
+[Deployment Ephilogue]
+0
+[FinOpciones Modelo]
+[Recursos]
+[NumTask]
+0
+[NumSemRec]
+0
+[NumSemBin]
+0
+[TotalTaskSize]
+0
+[FinRecursos]
+[Modelo Asociados]
+0
+[Bibliotecas Asociadas]
+0
+[Maquinas del Modelo]
+1
+[Version Maquina]
+0
+EDROOMTarget
+55
+1
+[Deployment]
+[Version]
+2
+DUMMY_MESCC_Lib
+3
+[ActorDeployment]
+[Version]
+1
+MainActor
+1
+10
+EDROOMprioNormal
+ 
+UT_CCDroneMng
+NULL
+[EventsDeployment]
+2
+[EventDeployment]
+[Version]
+1
+EvTimerUTTimerCtrl
+Timer
+1
+1
+0
+0
+[CEgRoomDeadLine]
+[Version]
+1
+-1
+-1
+0
+0
+[EventDeployment]
+[Version]
+1
+EvTimerWatchDogTimer
+Timer
+2
+1
+0
+0
+[CEgRoomDeadLine]
+[Version]
+1
+-1
+-1
+0
+0
+[ActorDeployment]
+[Version]
+1
+DroneMngTester
+2
+10
+EDROOMprioNormal
+ 
+CCDroneMngTester
+UT_CCDroneMng
+[EventsDeployment]
+1
+[EventDeployment]
+[Version]
+1
+EvTimerTimer
+Timer
+3
+1
+0
+0
+[CEgRoomDeadLine]
+[Version]
+1
+-1
+-1
+0
+0
+[ActorDeployment]
+[Version]
+1
+DroneMng
+3
+10
+EDROOMprioNormal
+ 
+CCDroneMng
+UT_CCDroneMng
+[EventsDeployment]
+1
+[EventDeployment]
+[Version]
+1
+EvTimerDroneTimer
+Timer
+4
+1
+0
+0
+[CEgRoomDeadLine]
+[Version]
+1
+-1
+-1
+0
+0
+[EventDeployment]
+[Version]
+1
+EvEDROOMStart
+External
+0
+1
+0
+0
+[CEgRoomDeadLine]
+[Version]
+1
+-1
+-1
+0
+0

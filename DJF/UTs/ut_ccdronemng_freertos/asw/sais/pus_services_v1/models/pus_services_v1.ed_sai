@@ -1,0 +1,12 @@
+
+
+/*
+ * SAI Model.
+*/ 
+
+
+sai pus_services{
+
+	uri := .pus_services;
+	version :=v1;
+};

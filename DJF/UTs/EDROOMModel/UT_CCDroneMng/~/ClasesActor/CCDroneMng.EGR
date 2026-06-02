@@ -1,0 +1,490 @@
+[Version Actor SW]
+5
+0
+0
+0
+0
+[Modificado]
+0
+0
+0
+[Estructura]
+[Version Estructura]
+3
+[Parametro]
+NULL
+ 
+ 
+[FinParametro]
+[Stack]
+1
+[FinStack]
+[Puertos]
+2
+[Version Puerto]
+0
+DroneMngCtrl
+0
+1
+0
+[Version Grafico Puerto]
+0
+48
+4
+CPDroneMngCtrl
+[Version Puerto]
+0
+DroneTimer
+0
+1
+1
+[Version Grafico Puerto]
+0
+54
+63
+EDROOMTimingSAP
+[FinPuertos]
+[ActoresComponente]
+0
+[FinActoresComponente]
+[Uniones]
+0
+[FinUniones]
+[NumTimers]
+2
+[FinNumTimers]
+[NumMsgDef]
+10
+[FinNumMsgDef]
+[FinEstructura]
+[Comportamiento]
+[Version Comportamiento]
+3
+0
+[Pools]
+0
+[Modulos]
+1
+[Version Modulo]
+1
+pus_services_iface
+mclev Package:
+v1
+ 
+1
+1
+[Eventos]
+1
+[Event]
+[Version]
+1
+EvTimerDroneTimer
+Timer
+[Maquina de Estados]
+[Version Maquina de Estados]
+1
+Top
+NULL
+[Subestados]
+4
+[Version SubEstados]
+3
+I
+;
+;
+;
+;
+;
+0
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+149 61 55 55
+[FinObjetoGrafico]
+SelfTest
+;
+;
+FDroneSelfTest();
+;
+;
+1
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+100 165 188 60
+[FinObjetoGrafico]
+Ready
+;
+;
+;
+;
+;
+1
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+101 280 175 60
+[FinObjetoGrafico]
+FlightPlan
+;
+;
+;
+;
+;
+1
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+115 541 525 74
+[FinObjetoGrafico]
+[PuntosEleccion]
+2
+[Version PuntosEleccion]
+2
+ExecTC
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+173 382 35 35
+[FinObjetoGrafico]
+CtrlAlgorithm
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+413 305 35 35
+[FinObjetoGrafico]
+ExecTC
+0
+[Ramas]
+2
+[Version Ramas]
+5
+WaitFP
+true
+Ready
+DSubEst
+;
+ 
+ 
+ 
+;
+;
+;
+;
+[GraficoRama]
+[Version GraficoRama]
+0
+173 399 101 328 3
+[FinGraficoRama]
+InitFlightPlan
+GExecFlightPlan()
+FlightPlan
+DSubEst
+FInitFlightPlan();
+ 
+ 
+ 
+;
+;
+;
+;
+[GraficoRama]
+[Version GraficoRama]
+0
+190 416 195 541 0
+[FinGraficoRama]
+CtrlAlgorithm
+0
+[Ramas]
+2
+[Version Ramas]
+5
+PlanDone
+GFlightPlanDone()
+Ready
+DSubEst
+FToReady();
+ 
+ 
+ 
+;
+;
+;
+;
+[GraficoRama]
+[Version GraficoRama]
+0
+413 322 276 318 3
+[FinGraficoRama]
+ProgNextCtrl
+true
+FlightPlan
+DSubEst
+FProgNextCtrl();
+ 
+ 
+ 
+;
+;
+;
+;
+[GraficoRama]
+[Version GraficoRama]
+0
+447 322 557 541 0
+[FinGraficoRama]
+[Transiciones]
+4
+[Version Transicion]
+5
+Init
+I
+OSubEstI
+SelfTest
+DSubEst
+;
+[Trigger]
+EDROOMsl
+EDROOMStart
+true
+ 
+ 
+ 
+;
+;
+;
+0
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+176 115 180 165 0
+[FinGraficoTransicion]
+ToReady
+SelfTest
+OSubEst
+Ready
+DSubEst
+;
+[Trigger]
+DroneMngCtrl
+SDroneSetUp
+true
+ 
+ 
+ 
+FGetConfig();
+;
+FReplyDroneReady();
+1
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+179 225 179 280 2
+[FinGraficoTransicion]
+ExecTC
+Ready
+OSubEst
+ExecTC
+DPEleccion
+;
+[Trigger]
+DroneMngCtrl
+SDroneTC
+true
+ 
+ 
+ 
+FExecDroneTC();
+;
+;
+0
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+182 340 190 382 0
+[FinGraficoTransicion]
+CtrlAlgorithm
+FlightPlan
+OSubEst
+CtrlAlgorithm
+DPEleccion
+FFlightCtrlAlgorithm();
+[Trigger]
+DroneTimer
+EDROOMSignalTimeout
+true
+ 
+ 
+ 
+;
+;
+;
+0
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+432 541 430 339 3
+[FinGraficoTransicion]
+[VariablesConstantes]
+1
+[Version VariYConst]
+0
+VNextCtrl
+Pr_Time
+
+Variable
+0
+[Metodos]
+10
+[Version Metodos]
+21
+BasicAction
+FDroneSelfTest()
+0
+0
+0
+0
+1
+ 
+1
+pus_service129_drone_selftest();
+MsgDataHandler
+FExecDroneTC()
+0
+0
+0
+0
+1
+ 
+1
+varSDroneTC.ExecDroneTC();
+[ServiceRequest]
+Msg->data
+DroneMngCtrl
+SDroneTC
+CDTCHandler
+ 
+BasicAction
+FFlightCtrlAlgorithm()
+0
+0
+0
+0
+1
+ 
+1
+pus_service129_flight_ctrl_algorithm();
+MsgDataHandler
+FGetConfig()
+0
+0
+0
+0
+1
+ 
+1
+pus_service129_setup(varSDroneSetUp);
+[ServiceRequest]
+Msg->data
+DroneMngCtrl
+SDroneSetUp
+CDDroneConfig
+ 
+Inform
+FInitFlightPlan()
+0
+0
+0
+0
+1
+ 
+5
+time.GetTime();
+time += Pr_Time(0, 100000);
+VNextCtrl = time;
+ 
+pus_service129_init_flight_plan();
+[ServiceRequest]
+InformAt
+DroneTimer
+EDROOMSignalTimeout
+ 
+EDROOMprioVeryHigh
+Inform
+FProgNextCtrl()
+0
+0
+0
+0
+1
+ 
+2
+VNextCtrl += Pr_Time(0, 100000);
+time = VNextCtrl;
+[ServiceRequest]
+InformAt
+DroneTimer
+EDROOMSignalTimeout
+ 
+EDROOMprioVeryHigh
+ReplyMsg
+FReplyDroneReady()
+0
+0
+0
+0
+1
+ 
+1
+pus_service129_drone_ready();
+[ServiceRequest]
+Msg->reply
+DroneMngCtrl
+SDroneReady
+NULL
+EDROOMprioVeryHigh
+BasicAction
+FToReady()
+0
+0
+0
+0
+1
+ 
+1
+pus_service129_drone_ready();
+Guard
+GExecFlightPlan()
+0
+0
+0
+0
+1
+ 
+1
+return pus_service129_flight_plan_ready();
+Guard
+GFlightPlanDone()
+0
+0
+0
+0
+1
+ 
+1
+return pus_service129_flight_plan_done();
+[MaquinasSubEstados]
+0
+[FinMaquinasSubEstados]
+[Fin Maquina de Estados]
+[FinComportamiento]
