@@ -1,0 +1,35 @@
+[Version Protocolo]
+9
+0
+0
+0
+0
+0
+1
+[Version Mensaje]
+1
+[Version Senal]
+0
+STxTM
+[Version Dato]
+1
+CDTMList
+Z:\home\opolo70\EDROOM\Models\UAH_ASW_HK\\
+es.uah.aut.srg.edroom.mclev.data_sai.cdtmlist
+v1
+1
+1
+[Version Mensaje]
+1
+[Version Senal]
+0
+STMQueued
+[Version Dato]
+1
+NULL
+Z:\home\opolo70\EDROOM\Models\UAH_ASW_HK\
+es.uah.aut.srg.edroom.mclev.data_sai.NULL
+v1
+2
+STxTM
+0
