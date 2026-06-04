@@ -84,12 +84,17 @@ CPDroneMngCtrl
 3
 0
 [Pools]
-1
+2
 [Version PoolDatosMens]
 0
 EDROOMPoolCDTCHandler
 CDTCHandler
 10
+[Version PoolDatosMens]
+0
+EDROOMPoolCDDroneConfig
+CDDroneConfig
+2
 [Modulos]
 2
 [Version Modulo]
@@ -319,8 +324,8 @@ Ready
 DSubEst
 FInit();
 [Trigger]
-EDROOMsl
-EDROOMStart
+*
+SEvAction
 true
  
  
@@ -629,7 +634,90 @@ GToReboot()
 1
 return VTCExecCtrl.IsRebootTC();
 [MaquinasSubEstados]
+1
+Ready
+[Maquina de Estados]
+[Version Maquina de Estados]
+1
+Ready
+Top
+[Subestados]
+1
+[Version SubEstados]
+3
+StandBy
+;
+;
+;
+;
+;
 0
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+209 198 90 60
+[FinObjetoGrafico]
+[PuntosEleccion]
+0
+[Version PuntosEleccion]
+2
+[Transiciones]
+1
+[Version Transicion]
+5
+ Init
+Init
+OPEntrada
+StandBy
+DSubEst
+FInit();
+[Trigger]
+*
+SEvAction
+true
+ 
+ 
+ 
+;
+;
+FInvokeDroneSetUp();
+0
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+50 130 209 230 0
+[FinGraficoTransicion]
+[VariablesConstantes]
+0
+[Metodos]
+1
+[Version Metodos]
+21
+InvokeMsg
+FInvokeDroneSetUp()
+0
+0
+0
+0
+1
+
+4
+pSDroneSetUp_Data->ZMinBeforeAdvance=10;
+pSDroneSetUp_Data->DefaultKp=0.2;
+pSDroneSetUp_Data->DefaultKi=0.15;
+pSDroneSetUp_Data->DefaultKd=0.05;
+[ServiceRequest]
+invoke
+DroneMngCtrl
+SDroneSetUp
+CDDroneConfig
+EDROOMprioVeryHigh
+[MaquinasSubEstados]
+0
+[FinMaquinasSubEstados]
+[Fin Maquina de Estados]
 [FinMaquinasSubEstados]
 [Fin Maquina de Estados]
 [FinComportamiento]
