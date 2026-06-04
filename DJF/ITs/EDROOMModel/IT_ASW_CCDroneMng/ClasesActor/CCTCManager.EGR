@@ -671,7 +671,7 @@ Init
 OPEntrada
 StandBy
 DSubEst
-FInit();
+;
 [Trigger]
 *
 SEvAction
