@@ -242,7 +242,7 @@ FMngTCRejection();
 HandleTC
 0
 [Ramas]
-4
+5
 [Version Ramas]
 5
 ToReboot
@@ -312,6 +312,23 @@ FFwdBKGTC();
 [Version GraficoRama]
 0
 545 351 322 332 3
+[FinGraficoRama]
+FwdDroneTC
+GFwdDroneTC()
+Ready
+DSubEst
+;
+
+ 
+
+;
+FFwdDroneTC();
+;
+;
+[GraficoRama]
+[Version GraficoRama]
+0
+553 351 322 398 2
 [FinGraficoRama]
 [Transiciones]
 4
@@ -433,7 +450,7 @@ CDTCExecCtrl
 Variable
 0
 [Metodos]
-15
+17
 [Version Metodos]
 21
 BasicAction
@@ -633,6 +650,32 @@ GToReboot()
  
 1
 return VTCExecCtrl.IsRebootTC();
+Guard
+GFwdDroneTC()
+0
+0
+0
+0
+1
+
+1
+return VTCExecCtrl.IsDroneTC();
+SendMsg
+FFwdDroneTC()
+0
+0
+0
+0
+1
+
+1
+*pSDroneTC_Data = VCurrentTC;	
+[ServiceRequest]
+send
+DroneMngCtrl
+SDroneTC
+CDTCHandler
+EDROOMprioNormal
 [MaquinasSubEstados]
 1
 Ready
