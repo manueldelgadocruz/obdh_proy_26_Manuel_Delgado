@@ -6,10 +6,13 @@
  */
 
 #include <public/pus_services_iface_v1.h>
+#include "public/pus_service04.h"
+
 #include "public/cdtchandler.h"
 #include "public/serialize.h"
 #include "public/crc.h"
 #include "public/sc_channel_drv_v1.h"
+
 
 #include "public/cdtcexecctrl_iface_v1.h"
 

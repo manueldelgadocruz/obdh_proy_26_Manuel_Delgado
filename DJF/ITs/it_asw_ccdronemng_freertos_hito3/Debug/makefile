@@ -13,8 +13,15 @@ RM := rm -rf
 -include service_libraries/pus_services/pus_tm_handler/src/subdir.mk
 -include service_libraries/pus_services/pus_tc_handler/src/subdir.mk
 -include service_libraries/pus_services/pus_sys_data_pool/src/subdir.mk
+-include service_libraries/pus_services/pus_service20/src/subdir.mk
+-include service_libraries/pus_services/pus_service19/src/subdir.mk
+-include service_libraries/pus_services/pus_service17/src/subdir.mk
 -include service_libraries/pus_services/pus_service129/src/subdir.mk
+-include service_libraries/pus_services/pus_service12/src/subdir.mk
 -include service_libraries/pus_services/pus_service05/src/subdir.mk
+-include service_libraries/pus_services/pus_service04/src/subdir.mk
+-include service_libraries/pus_services/pus_service03/src/subdir.mk
+-include service_libraries/pus_services/pus_service02/src/subdir.mk
 -include service_libraries/pus_services/pus_service01/src/subdir.mk
 -include service_libraries/emu_tc_programming/src/subdir.mk
 -include service_libraries/edroomsl/edroomsl_types/src/subdir.mk
@@ -43,10 +50,12 @@ RM := rm -rf
 -include asw/dataclasses/CDTCMemDescriptor/src/subdir.mk
 -include asw/dataclasses/CDTCHandler/src/subdir.mk
 -include asw/dataclasses/CDEvAction/src/subdir.mk
--include asw/components/uahmarsdrone/src/subdir.mk
+-include asw/components/uah_asw/src/subdir.mk
+-include asw/components/cctcmanager/src/subdir.mk
+-include asw/components/cchk_fdirmng/src/subdir.mk
+-include asw/components/ccdronemng/src/subdir.mk
+-include asw/components/ccbkgtcexec/src/subdir.mk
 -include subdir.mk
--include objects.mk
-
 ifneq ($(MAKECMDGOALS),clean)
 ifneq ($(strip $(C++_DEPS)),)
 -include $(C++_DEPS)
@@ -76,7 +85,7 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := ft_uah_mars_drone_freertos_hito3
+BUILD_ARTIFACT_NAME := it_asw_ccdronemng_freertos_hito3
 BUILD_ARTIFACT_EXTENSION :=
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
@@ -87,19 +96,19 @@ BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ART
 all: main-build
 
 # Main-build Target
-main-build: ft_uah_mars_drone_freertos_hito3
+main-build: it_asw_ccdronemng_freertos_hito3
 
 # Tool invocations
-ft_uah_mars_drone_freertos_hito3: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+it_asw_ccdronemng_freertos_hito3: $(OBJS) $(USER_OBJS) makefile $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++  -o "ft_uah_mars_drone_freertos_hito3" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++  -o "it_asw_ccdronemng_freertos_hito3" $(OBJS) $(USER_OBJS) $(LIBS) -lpthread
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) ft_uah_mars_drone_freertos_hito3
+	-$(RM) it_asw_ccdronemng_freertos_hito3
 	-@echo ' '
 
 .PHONY: all clean dependents main-build

@@ -49,11 +49,17 @@
 //TODO 10 Part2 include pus_service04.h only if ST[04] has been integrated
 //#include "public/pus_service04.h"
 
+
+#include "public/pus_service04.h"
 #include "public/pus_service05.h"
 #include "public/pus_service12.h"
+#include "public/pus_service129.h"
 #include "public/pus_service17.h"
 #include "public/pus_service19.h"
 #include "public/pus_service20.h"
+
+
+
 
 
 #ifdef __cplusplus

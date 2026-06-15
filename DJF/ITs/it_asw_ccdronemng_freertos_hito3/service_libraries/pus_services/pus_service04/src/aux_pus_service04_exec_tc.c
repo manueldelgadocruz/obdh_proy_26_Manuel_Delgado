@@ -220,7 +220,17 @@ void pus_service4_exec_TC_4_7(tc_handler_t *ptc_handler) {
 
 
 				//TODO 07 Complete TC[4,7]
-				(See TC[4,6] execution as model)
+
+				error = pus_service4_delete_PID_stats(PID);
+
+				if (!error) {
+
+					pus_service1_tx_TM_1_7(ptc_handler);
+
+				} else {
+
+					pus_service1_tx_TM_1_8_PID_stat_undefined(ptc_handler, PID);
+				}
 
 				//1) Use error=pus_service4_delete_PID_stats to try
 				     //to delete the PID stats
