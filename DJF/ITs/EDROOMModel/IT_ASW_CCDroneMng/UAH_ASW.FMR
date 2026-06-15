@@ -19,13 +19,13 @@ UAH_ASW
 [CurrentTarget]
 0
 [MESP Directory]
-z:\home\atcsol\OBDH_2026-workspace\asw_pus_rtems_5_0_leon3_st20_resuelto\asw
+C:\Users\manud\Documents\GitHub\obdh_proy_26_Manuel_Delgado\DJF\ITs\it_asw_ccdronemng_freertos_hito3\asw
 [MESP main Directory]
-z:\home\atcsol\OBDH_2026-workspace\asw_pus_rtems_5_0_leon3_st20_resuelto
+C:\Users\manud\Documents\GitHub\obdh_proy_26_Manuel_Delgado\DJF\ITs\it_asw_ccdronemng_freertos_hito3
 [MESP main prototype]
-extern "C" rtems_task Init (uint32_t arg)
+int main (void)
 [MESP main return]
-;
+return 0;
 [Dyn Priority]
 0
 [Main Cmp Priority]

@@ -1,7 +1,7 @@
 [Version Lista Datos]
 2
 CDDroneConfig
-1
+0
 es.uah.aut.srg.edroom.mclev.data_sai.cddroneconfig
 v1
 CDTMList
@@ -25,7 +25,7 @@ CDTCAcceptReport
 es.uah.aut.srg.edroom.mclev.data_sai.cdtcacceptreport
 v1
 CDEvAction
-1
+0
 es.uah.aut.srg.edroom.mclev.data_sai.CDEvAction
 v1
 //FINDATOS

@@ -1,6 +1,6 @@
 
 
-#include <public/cchk_fdirmng_iface_v1.h>
+#include <public/ccdronemng_iface_v1.h>
 
 
 
@@ -10,7 +10,7 @@
 
 
 
-CCHK_FDIRMng::CCHK_FDIRMng(TEDROOMComponentID id,
+CCDroneMng::CCDroneMng(TEDROOMComponentID id,
 		TEDROOMUInt32 roomNumMaxMens,
 		TEDROOMPriority roomtaskPrio,
 		TEDROOMStackSizeType roomStack,
@@ -25,11 +25,11 @@ CCHK_FDIRMng::CCHK_FDIRMng(TEDROOMComponentID id,
 
 		// *******************  Timers  ********************
 
-		HK_FDIRTimer(&EDROOMtimingSAP, 2 ),
+		DroneTimer(&EDROOMtimingSAP, 2 ),
 
 		// ***************	Top State  *****************
 
-		edroomTopState(*this,pActorMemory)
+		edroomTopState(*this)
 
 
 {
@@ -46,7 +46,7 @@ CCHK_FDIRMng::CCHK_FDIRMng(TEDROOMComponentID id,
 //************************** EDROOMConfig **********************************
 
 
-int CCHK_FDIRMng::EDROOMConfig()
+int CCDroneMng::EDROOMConfig()
 {
 
 
@@ -57,7 +57,7 @@ int CCHK_FDIRMng::EDROOMConfig()
 
 //************************** EDROOMStart **********************************
 
-int CCHK_FDIRMng::EDROOMStart()
+int CCDroneMng::EDROOMStart()
 {
 
 
@@ -82,7 +82,7 @@ int CCHK_FDIRMng::EDROOMStart()
 
 
 
-void CCHK_FDIRMng::EDROOMBehaviour()
+void CCDroneMng::EDROOMBehaviour()
 {
 
 	edroomTopState.EDROOMInit();
@@ -98,7 +98,7 @@ void CCHK_FDIRMng::EDROOMBehaviour()
 
 #ifdef _EDROOM_SYSTEM_CLOSE
 
-bool CCHK_FDIRMng::EDROOMIsComponentFinished()
+bool CCDroneMng::EDROOMIsComponentFinished()
 {
 
 
@@ -111,7 +111,7 @@ bool CCHK_FDIRMng::EDROOMIsComponentFinished()
 
 //****************** EDROOMMemory::SetMemory *******************************
 
-void CCHK_FDIRMng::CEDROOMMemory::SetMemory(TEDROOMUInt32 numMessages_ ,
+void CCDroneMng::CEDROOMMemory::SetMemory(TEDROOMUInt32 numMessages_ ,
 		CEDROOMMessage * MessagesMem_,
 		bool * MessagesMemMarks_,
 		TEDROOMUInt32 numberOfNodes_,

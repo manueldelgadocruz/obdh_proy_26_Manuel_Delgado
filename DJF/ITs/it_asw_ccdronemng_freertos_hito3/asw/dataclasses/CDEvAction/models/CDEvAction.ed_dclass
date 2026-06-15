@@ -2,7 +2,7 @@ dataclass CDEvAction{
 
 
 
-	uri := es.uah.aut.srg.edroom.mclev.data_sai.cdevaction.cdevaction_iface;
+	uri := es.uah.aut.srg.edroom.mclev.data_sai.CDEvAction.cdevaction_iface;
 	version := v1;
 
 
