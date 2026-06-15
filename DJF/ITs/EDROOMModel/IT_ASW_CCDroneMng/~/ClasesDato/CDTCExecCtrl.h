@@ -2,7 +2,7 @@
 #define FCDTCExecCtrlH
 
 enum TTCExecCtrl {
-	ExecCtrlPrioTC, ExecCtrlReboot, ExecCtrlHK_FDIRTC, ExecCtrlBKGTC
+	ExecCtrlPrioTC, ExecCtrlReboot, ExecCtrlHK_FDIRTC, ExecCtrlBKGTC, ExecCtrlDroneTC
 };
 
 class CDTCExecCtrl{
@@ -49,6 +49,14 @@ class CDTCExecCtrl{
 	 */
 	bool IsBKGTC() {return (ExecCtrlBKGTC==mExecCtrl);};
 	
-	
+		//TODO 11 Part 2 Define the codeo of IsDroneTC() to TTCExecCtrl
+
+	/**
+	 * \brief Check if is a Drone telecommand
+	 *
+	 * \return true if it is a Drone telecommand
+	 *
+	 */
+	bool IsDroneTC() {return (ExecCtrlDroneTC==mExecCtrl);}
 };
 #endif
