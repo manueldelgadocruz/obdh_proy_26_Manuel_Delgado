@@ -82,10 +82,13 @@ void pus_service129_exec_TC_129_2(tc_handler_t *ptc_handler) {
 	float Kd;
 
 	// TODO 17 Part1 TC -> Kp use tc_handler_get_float_appdata_field
+	error = tc_handler_get_float_appdata_field(ptc_handler, &Kp);
 
 	// TODO 17 Part1 TC -> Ki use tc_handler_get_float_appdata_field
+	error += tc_handler_get_float_appdata_field(ptc_handler, &Ki);
 
 	// TODO 17 Part1 TC -> Kd use tc_handler_get_float_appdata_field
+	error += tc_handler_get_float_appdata_field(ptc_handler, &Kd);
 
 	if (error) {
 

@@ -47,7 +47,7 @@
 
 //TODO 15 Part 2 Execute the Functional Test and compare with the expected output
 
-#define IT_UAH_DRONE_EXEC_PLAN_1000
+//#define IT_UAH_DRONE_EXEC_PLAN_1000
 
 #ifdef IT_UAH_DRONE_EXEC_PLAN_1000
 
