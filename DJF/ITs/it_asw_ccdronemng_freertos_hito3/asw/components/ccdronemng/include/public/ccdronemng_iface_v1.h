@@ -211,6 +211,7 @@ public:
 			CtrlAlgorithm,
 			CtrlAlgorithm_PlanDone,
 			CtrlAlgorithm_ProgNextCtrl,
+			ExecTCInFlight,
 			EDROOMMemoryTrans };
 
 

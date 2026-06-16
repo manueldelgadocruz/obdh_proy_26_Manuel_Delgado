@@ -5,8 +5,8 @@
 0
 0
 [Modificado]
-0
-0
+1
+1
 0
 [Estructura]
 [Version Estructura]
@@ -139,7 +139,7 @@ FlightPlan
 [ObjetoGrafico]
 [Version Objeto Grafico]
 0
-115 541 525 74
+111 532 525 74
 [FinObjetoGrafico]
 [PuntosEleccion]
 2
@@ -197,7 +197,7 @@ FInitFlightPlan();
 [GraficoRama]
 [Version GraficoRama]
 0
-190 416 195 541 0
+190 416 191 532 0
 [FinGraficoRama]
 CtrlAlgorithm
 0
@@ -237,10 +237,10 @@ FProgNextCtrl();
 [GraficoRama]
 [Version GraficoRama]
 0
-447 322 557 541 0
+447 322 553 532 0
 [FinGraficoRama]
 [Transiciones]
-4
+5
 [Version Transicion]
 5
 Init
@@ -333,7 +333,30 @@ true
 [GraficoTransicion]
 [Version GraficoTransicion]
 0
-432 541 430 339 3
+428 532 430 339 1
+[FinGraficoTransicion]
+ExecTCInFlight
+FlightPlan
+OSubEst
+FlightPlan
+DSubEst
+;
+[Trigger]
+DroneMngCtrl
+SDroneTC
+true
+ 
+ 
+ 
+FExecDroneTC();
+;
+;
+0
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+527 606 222 606 5
 [FinGraficoTransicion]
 [VariablesConstantes]
 1
