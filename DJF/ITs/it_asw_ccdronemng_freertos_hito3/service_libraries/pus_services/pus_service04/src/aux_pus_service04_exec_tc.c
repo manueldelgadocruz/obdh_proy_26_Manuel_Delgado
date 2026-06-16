@@ -229,7 +229,7 @@ void pus_service4_exec_TC_4_7(tc_handler_t *ptc_handler) {
 
 				} else {
 
-					pus_service1_tx_TM_1_8_PID_stat_undefined(ptc_handler, PID);
+					pus_service1_tx_TM_1_8_PID_stats_undefined(ptc_handler, PID);
 				}
 
 				//1) Use error=pus_service4_delete_PID_stats to try

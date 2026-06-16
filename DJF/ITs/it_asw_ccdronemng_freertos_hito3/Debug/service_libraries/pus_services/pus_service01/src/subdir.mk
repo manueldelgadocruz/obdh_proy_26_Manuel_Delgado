@@ -5,16 +5,19 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../service_libraries/pus_services/pus_service01/src/aux_pus_service01_x_utils.c \
+../service_libraries/pus_services/pus_service01/src/pus_service01.c \
 ../service_libraries/pus_services/pus_service01/src/pus_service01_tx_tm_1_4.c \
 ../service_libraries/pus_services/pus_service01/src/pus_service01_tx_tm_1_8.c 
 
 C_DEPS += \
 ./service_libraries/pus_services/pus_service01/src/aux_pus_service01_x_utils.d \
+./service_libraries/pus_services/pus_service01/src/pus_service01.d \
 ./service_libraries/pus_services/pus_service01/src/pus_service01_tx_tm_1_4.d \
 ./service_libraries/pus_services/pus_service01/src/pus_service01_tx_tm_1_8.d 
 
 OBJS += \
 ./service_libraries/pus_services/pus_service01/src/aux_pus_service01_x_utils.o \
+./service_libraries/pus_services/pus_service01/src/pus_service01.o \
 ./service_libraries/pus_services/pus_service01/src/pus_service01_tx_tm_1_4.o \
 ./service_libraries/pus_services/pus_service01/src/pus_service01_tx_tm_1_8.o 
 
@@ -31,7 +34,7 @@ service_libraries/pus_services/pus_service01/src/%.o: ../service_libraries/pus_s
 clean: clean-service_libraries-2f-pus_services-2f-pus_service01-2f-src
 
 clean-service_libraries-2f-pus_services-2f-pus_service01-2f-src:
-	-$(RM) ./service_libraries/pus_services/pus_service01/src/aux_pus_service01_x_utils.d ./service_libraries/pus_services/pus_service01/src/aux_pus_service01_x_utils.o ./service_libraries/pus_services/pus_service01/src/pus_service01_tx_tm_1_4.d ./service_libraries/pus_services/pus_service01/src/pus_service01_tx_tm_1_4.o ./service_libraries/pus_services/pus_service01/src/pus_service01_tx_tm_1_8.d ./service_libraries/pus_services/pus_service01/src/pus_service01_tx_tm_1_8.o
+	-$(RM) ./service_libraries/pus_services/pus_service01/src/aux_pus_service01_x_utils.d ./service_libraries/pus_services/pus_service01/src/aux_pus_service01_x_utils.o ./service_libraries/pus_services/pus_service01/src/pus_service01.d ./service_libraries/pus_services/pus_service01/src/pus_service01.o ./service_libraries/pus_services/pus_service01/src/pus_service01_tx_tm_1_4.d ./service_libraries/pus_services/pus_service01/src/pus_service01_tx_tm_1_4.o ./service_libraries/pus_services/pus_service01/src/pus_service01_tx_tm_1_8.d ./service_libraries/pus_services/pus_service01/src/pus_service01_tx_tm_1_8.o
 
 .PHONY: clean-service_libraries-2f-pus_services-2f-pus_service01-2f-src
 

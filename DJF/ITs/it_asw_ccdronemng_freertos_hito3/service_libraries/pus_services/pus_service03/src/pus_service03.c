@@ -38,24 +38,24 @@
 
 
 //TODO 12 Configure SIDs
+//TODO 12 Configure SIDs
 HK_config_t HKConfig[PUS_SERVICE3_MAX_NUM_OF_SIDS] = {
-		{ SIDEnabled, 0, 2, 0, 5, { 0, 1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0 } },
-		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } }
-
+		{ SIDEnabled, 0, 3, 0, 6, { 0, 1, 2, 3, 4, UAH_DRONE_Wind, 0, 0, 0, 0 } },
+		{ SIDEnabled, 10, 2, 0, 6, { UAH_DRONE_X, UAH_DRONE_Y, UAH_DRONE_Z, UAH_DRONE_VX, UAH_DRONE_VY, UAH_DRONE_VZ, 0, 0, 0, 0 } },
+		{ SIDDisabled, 11, 5, 0, 2, { 14, 15, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ SIDConfigUnused, 0, 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } }
 };
 
 
@@ -77,17 +77,26 @@ void pus_service3_do_HK() {
 	}
 
 }
+
 //TODO 11 complete pus_service3_exec_tc TC[3,X] execution control
 void pus_service3_exec_tc(tc_handler_t *ptc_handler) {
 
 	switch (ptc_handler->tc_df_header.subtype) {
 
+	case (5):
+		pus_service3_exec_TC_3_5(ptc_handler);
+		break;
+
+	case (6):
+		pus_service3_exec_TC_3_6(ptc_handler);
+		break;
+
 	default:
 		//No defined code for this TC. ASW design error
 		pus_service1_tx_TM_1_4_TC_X_Y_NO_EXEC_CODE(ptc_handler);
+		break;
 
 	}
-
 }
 
 

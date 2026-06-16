@@ -6,8 +6,6 @@
  */
 
 #include <public/pus_services_iface_v1.h>
-#include "public/pus_service04.h"
-
 #include "public/cdtchandler.h"
 #include "public/serialize.h"
 #include "public/crc.h"
@@ -59,6 +57,7 @@ CDTCExecCtrl CDTCHandler::GetExecCtrl() {
 
 	//Get TC type
 	uint8_t type = mTCHandler.tc_df_header.type;
+	uint8_t subtype = mTCHandler.tc_df_header.subtype;
 
 	CDTCExecCtrl execCtrl;
 	switch (type) {
@@ -80,6 +79,20 @@ CDTCExecCtrl CDTCHandler::GetExecCtrl() {
 		execCtrl.mExecCtrl = ExecCtrlBKGTC;
 		break;
 
+	case (129):
+		switch (subtype) {
+		case (1):
+		case (2):
+		case (3):
+		case (4):
+			execCtrl.mExecCtrl = ExecCtrlDroneTC;
+			break;
+
+		default:
+			execCtrl.mExecCtrl = ExecCtrlPrioTC;
+			break;
+		}
+		break;
 
 	default:
 
@@ -105,6 +118,10 @@ void CDTCHandler::ExecPrioTC() {
 		uint8_t type = mTCHandler.tc_df_header.type;
 
 		switch (type) {
+
+		case (2):
+			pus_service2_exec_tc(&mTCHandler);
+			break;
 
 		case (17):
 			pus_service17_exec_tc(&mTCHandler);
@@ -229,16 +246,17 @@ void CDTCHandler::ExecDroneTC() {
 
 		switch (type) {
 
-
+		case (129):
+			pus_service129_exec_tc(&mTCHandler);
+			break;
 
 		default:
 			//No defined code for this TC. Design error
 			pus_service1_tx_TM_1_4_TC_X_Y_NO_EXEC_CODE(&mTCHandler);
+			tc_handler_free_memory(&mTCHandler);
 			break;
 
 		}
-
-		tc_handler_free_memory(&mTCHandler);
 	}
 
 }
