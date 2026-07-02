@@ -30,7 +30,7 @@
 
 #define OBT_START_FT_ST19 (OBT_AFTER_POWER_ON + 50)
 
-#define FT_UAH_ASW_Event_Action_0110
+//#define FT_UAH_ASW_Event_Action_0110
 
 #ifdef FT_UAH_ASW_Event_Action_0110
 

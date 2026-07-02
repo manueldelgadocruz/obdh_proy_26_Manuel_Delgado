@@ -66,6 +66,10 @@ void pus_service3_do_HK();
  */
 void pus_service3_exec_tc(tc_handler_t *ptc_handler);
 
+void pus_service3_exec_TC_3_5(tc_handler_t *ptc_handler);
+void pus_service3_exec_TC_3_6(tc_handler_t *ptc_handler);
+void pus_service3_exec_TC_3_31(tc_handler_t *ptc_handler);
+
 #ifdef __cplusplus
 }
 #endif

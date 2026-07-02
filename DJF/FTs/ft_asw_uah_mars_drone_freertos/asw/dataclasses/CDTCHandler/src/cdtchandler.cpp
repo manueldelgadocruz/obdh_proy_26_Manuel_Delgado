@@ -79,6 +79,10 @@ CDTCExecCtrl CDTCHandler::GetExecCtrl() {
 		execCtrl.mExecCtrl = ExecCtrlBKGTC;
 		break;
 
+	case (128):
+		execCtrl.mExecCtrl = ExecCtrlPrioTC;;
+			break;
+
 	case (129):
 		switch (subtype) {
 		case (1):
@@ -127,6 +131,10 @@ void CDTCHandler::ExecPrioTC() {
 			pus_service17_exec_tc(&mTCHandler);
 			break;
 
+		case (128):
+			pus_service128_exec_tc(&mTCHandler);
+			break;
+
 		default:
 			//No defined code for this TC. Design error
 			pus_service1_tx_TM_1_4_TC_X_Y_NO_EXEC_CODE(&mTCHandler);
@@ -151,6 +159,9 @@ void CDTCHandler::ExecRebootTC() {
 
 		switch (type) {
 
+		case (128):
+					pus_service128_exec_tc(&mTCHandler);
+					break;
 
 
 		default:

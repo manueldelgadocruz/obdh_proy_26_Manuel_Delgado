@@ -41,6 +41,7 @@ extern "C" {
  * \param ptc_handler pointer to the tc handler
  */
 void pus_service128_exec_tc(tc_handler_t *ptc_handler);
+void pus_service128_exec_TC_128_1(tc_handler_t *ptc_handler);
 
 #ifdef __cplusplus
 }

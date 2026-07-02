@@ -32,7 +32,7 @@
 
 #define OBT_START_FT_ST17_0010 (OBT_AFTER_POWER_ON + 1)
 
-#define FT_UAH_ASW_SERV_17_0010
+//#define FT_UAH_ASW_SERV_17_0010
 
 
 

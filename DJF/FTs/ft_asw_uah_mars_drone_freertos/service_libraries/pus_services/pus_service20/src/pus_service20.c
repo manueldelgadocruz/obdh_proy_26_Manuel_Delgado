@@ -40,19 +40,26 @@
 
 
 //TODO 08 complete pus_service20_exec_tc TC[20,X] execution control
+
 void pus_service20_exec_tc(tc_handler_t *ptc_handler){
 
 	switch (ptc_handler->tc_df_header.subtype) {
 
+	case (1):
+		pus_service20_exec_TC_20_1(ptc_handler);
+		break;
 
+	case (3):
+		pus_service20_exec_TC_20_3(ptc_handler);
+		break;
 
 	default:
 		//No defined code for this TC. ASW design error
 		pus_service1_tx_TM_1_4_TC_X_Y_NO_EXEC_CODE(ptc_handler);
 		break;
 	}
-
-
-
 }
+
+
+
 

@@ -50,6 +50,9 @@ void pus_service20_update_params();
  */
 void pus_service20_exec_tc(tc_handler_t *ptc_handler);
 
+void pus_service20_exec_TC_20_1(tc_handler_t *ptc_handler);
+void pus_service20_exec_TC_20_3(tc_handler_t *ptc_handler);
+
 #ifdef __cplusplus
 }
 #endif

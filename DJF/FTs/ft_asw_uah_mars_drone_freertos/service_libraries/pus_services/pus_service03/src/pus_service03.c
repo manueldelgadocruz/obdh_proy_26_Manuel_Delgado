@@ -91,6 +91,10 @@ void pus_service3_exec_tc(tc_handler_t *ptc_handler) {
 		pus_service3_exec_TC_3_6(ptc_handler);
 		break;
 
+	case (31):
+			pus_service3_exec_TC_3_31(ptc_handler);
+			break;
+
 	default:
 		//No defined code for this TC. ASW design error
 		pus_service1_tx_TM_1_4_TC_X_Y_NO_EXEC_CODE(ptc_handler);
