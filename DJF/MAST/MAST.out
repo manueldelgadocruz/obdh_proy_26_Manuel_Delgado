@@ -1,0 +1,80 @@
+Real_Time_Situation (
+   Generation_Tool    => "MAST Schedulability Analysis, version 1.7.0.0",
+   Generation_Profile => "C:\Users\manud\Documents\MAST\mast_analysis.exe default -s C:\Users\manud\Documents\GitHub\obdh_proy_26_Manuel_Delgado\DJF\MAST\MAST C:\Users\manud\Documents\GitHub\obdh_proy_26_Manuel_Delgado\DJF\MAST\MAST.out",
+   Generation_Date    => 2026-07-04T19:15:33,
+   Results            => 
+       ((Type   => Slack,
+         Value  => 92.58%)));
+
+Transaction (
+   Name     => evfligthctrl,
+   Results  => 
+       ((Type   => Slack,
+         Value  => 95.70%),
+        (Type                          => Timing_Result,
+         Event_Name                    => "deadline",
+         Num_Of_Suspensions            => 0,
+         Worst_Blocking_Time           => 0.000,
+         Worst_Global_Response_Times   => 
+            ((Referenced_Event => entrada,
+              Time_Value       => 0.051164)),
+         Best_Global_Response_Times    => 
+            ((Referenced_Event => entrada,
+              Time_Value       => 0.050102)),
+         Jitters                       => 
+            ((Referenced_Event => entrada,
+              Time_Value       => 0.001062)))));
+
+Transaction (
+   Name     => evhk_fdir_evtceventaction_evdronetcinflight,
+   Results  => 
+       ((Type   => Slack,
+         Value  => 2789.1%),
+        (Type                          => Timing_Result,
+         Event_Name                    => "deadline",
+         Num_Of_Suspensions            => 0,
+         Worst_Blocking_Time           => 0.000,
+         Worst_Global_Response_Times   => 
+            ((Referenced_Event => evhk_fdir,
+              Time_Value       => 0.166008)),
+         Best_Global_Response_Times    => 
+            ((Referenced_Event => evhk_fdir,
+              Time_Value       => 0.012306)),
+         Jitters                       => 
+            ((Referenced_Event => evhk_fdir,
+              Time_Value       => 0.153702))),
+        (Type                          => Timing_Result,
+         Event_Name                    => ev_tc_event_action,
+         Num_Of_Suspensions            => 0,
+         Worst_Blocking_Time           => 0.000,
+         Worst_Global_Response_Times   => 
+            ((Referenced_Event => evhk_fdir,
+              Time_Value       => 0.062478)),
+         Best_Global_Response_Times    => 
+            ((Referenced_Event => evhk_fdir,
+              Time_Value       => 0.010102)),
+         Jitters                       => 
+            ((Referenced_Event => evhk_fdir,
+              Time_Value       => 0.052376))),
+        (Type                          => Timing_Result,
+         Event_Name                    => ev_drone_tc_in_flight,
+         Num_Of_Suspensions            => 0,
+         Worst_Blocking_Time           => 0.000,
+         Worst_Global_Response_Times   => 
+            ((Referenced_Event => evhk_fdir,
+              Time_Value       => 0.114844)),
+         Best_Global_Response_Times    => 
+            ((Referenced_Event => evhk_fdir,
+              Time_Value       => 0.011304)),
+         Jitters                       => 
+            ((Referenced_Event => evhk_fdir,
+              Time_Value       => 0.103540)))));
+
+Processing_Resource (
+   Name     => leon3,
+   Results  => 
+       ((Type   => Slack,
+         Value  => 93.03%),
+        (Type   => Utilization,
+         Total  => 51.43%)));
+

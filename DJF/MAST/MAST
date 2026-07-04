@@ -1,0 +1,250 @@
+Processing_Resource (
+   Type                   => Regular_Processor,
+   Name                   => leon3,
+   Max_Interrupt_Priority => 16,
+   Min_Interrupt_Priority => 1,
+   Worst_ISR_Switch       => 1.000E-07,
+   Avg_ISR_Switch         => 1.000E-07,
+   Best_ISR_Switch        => 1.000E-07,
+   System_Timer           => 
+      ( Type           => Ticker,
+        Worst_Overhead => 1.000E-05,
+        Avg_Overhead   => 1.000E-05,
+        Best_Overhead  => 1.000E-05,
+        Period         => 0.010000),
+   Speed_Factor           => 1.00);
+
+Scheduler (
+   Type            => Primary_Scheduler,
+   Name            => rtems,
+   Host            => leon3,
+   Policy          => 
+      ( Type                 => Fixed_Priority,
+        Worst_Context_Switch => 1.000E-06,
+        Avg_Context_Switch   => 1.000E-06,
+        Best_Context_Switch  => 1.000E-06,
+        Max_Priority         => 16,
+        Min_Priority         => 1));
+
+Scheduling_Server (
+   Type                       => Regular,
+   Name                       => tcmanager,
+   Server_Sched_Parameters    => 
+      ( Type         => Fixed_Priority_Policy,
+        The_Priority => 3,
+        Preassigned  => YES),
+   Scheduler                  => rtems);
+
+Scheduling_Server (
+   Type                       => Regular,
+   Name                       => hk_fdirmng,
+   Server_Sched_Parameters    => 
+      ( Type         => Fixed_Priority_Policy,
+        The_Priority => 2,
+        Preassigned  => YES),
+   Scheduler                  => rtems);
+
+Scheduling_Server (
+   Type                       => Regular,
+   Name                       => bkgtcerec,
+   Server_Sched_Parameters    => 
+      ( Type         => Fixed_Priority_Policy,
+        The_Priority => 1,
+        Preassigned  => YES),
+   Scheduler                  => rtems);
+
+Scheduling_Server (
+   Type                       => Regular,
+   Name                       => irq18handler,
+   Server_Sched_Parameters    => 
+      ( Type         => Interrupt_FP_Policy,
+        The_Priority => 6),
+   Scheduler                  => rtems);
+
+Scheduling_Server (
+   Type                       => Regular,
+   Name                       => irq18bottonhalftask,
+   Server_Sched_Parameters    => 
+      ( Type         => Fixed_Priority_Policy,
+        The_Priority => 5,
+        Preassigned  => YES),
+   Scheduler                  => rtems);
+
+Scheduling_Server (
+   Type                       => Regular,
+   Name                       => dronemng,
+   Server_Sched_Parameters    => 
+      ( Type         => Fixed_Priority_Policy,
+        The_Priority => 4,
+        Preassigned  => YES),
+   Scheduler                  => rtems);
+
+Shared_Resource (
+   Type     => Priority_Inheritance_Resource,
+   Name     => sc_channel_ts);
+
+Operation (
+   Type                       => Simple,
+   Name                       => ffligthctrlalgorithm,
+   Worst_Case_Execution_Time  => 0.050000,
+   Avg_Case_Execution_Time    => 0.050000,
+   Best_Case_Execution_Time   => 0.050000);
+
+Operation (
+   Type                       => Simple,
+   Name                       => fprognextctrl,
+   Worst_Case_Execution_Time  => 1.000E-04,
+   Avg_Case_Execution_Time    => 1.000E-04,
+   Best_Case_Execution_Time   => 1.000E-04);
+
+Operation (
+   Type                     => Composite,
+   Name                     => evfligthctrl,
+   Composite_Operation_List => 
+      ( ffligthctrlalgorithm,
+        fprognextctrl));
+
+Operation (
+   Type                       => Simple,
+   Name                       => op_fdohk_fdir,
+   Worst_Case_Execution_Time  => 0.010000,
+   Avg_Case_Execution_Time    => 0.010000,
+   Best_Case_Execution_Time   => 0.010000);
+
+Operation (
+   Type                       => Simple,
+   Name                       => op_fflightctrlalgorithm,
+   Worst_Case_Execution_Time  => 0.050000,
+   Avg_Case_Execution_Time    => 0.050000,
+   Best_Case_Execution_Time   => 0.050000);
+
+Operation (
+   Type                       => Simple,
+   Name                       => op_fprognextctrl,
+   Worst_Case_Execution_Time  => 1.000E-04,
+   Avg_Case_Execution_Time    => 1.000E-04,
+   Best_Case_Execution_Time   => 1.000E-04);
+
+Operation (
+   Type                       => Simple,
+   Name                       => op_ffwdevaction,
+   Worst_Case_Execution_Time  => 1.000E-04,
+   Avg_Case_Execution_Time    => 1.000E-04,
+   Best_Case_Execution_Time   => 1.000E-04);
+
+Operation (
+   Type                       => Simple,
+   Name                       => op_fgetevaction,
+   Worst_Case_Execution_Time  => 0.001000,
+   Avg_Case_Execution_Time    => 0.001000,
+   Best_Case_Execution_Time   => 0.001000);
+
+Operation (
+   Type                       => Simple,
+   Name                       => op_ftcexecctrl,
+   Worst_Case_Execution_Time  => 1.000E-04,
+   Avg_Case_Execution_Time    => 1.000E-04,
+   Best_Case_Execution_Time   => 1.000E-04);
+
+Operation (
+   Type                       => Simple,
+   Name                       => op_ffwddronetc,
+   Worst_Case_Execution_Time  => 1.000E-04,
+   Avg_Case_Execution_Time    => 1.000E-04,
+   Best_Case_Execution_Time   => 1.000E-04);
+
+Operation (
+   Type                       => Simple,
+   Name                       => op_fexecdronetc,
+   Worst_Case_Execution_Time  => 0.001000,
+   Avg_Case_Execution_Time    => 0.001000,
+   Best_Case_Execution_Time   => 0.001000);
+
+Operation (
+   Type                     => Composite,
+   Name                     => op_evflightctrl,
+   Composite_Operation_List => 
+      ( op_fflightctrlalgorithm,
+        op_fprognextctrl));
+
+Operation (
+   Type                     => Composite,
+   Name                     => op_hk_fdir,
+   Composite_Operation_List => 
+      ( op_fdohk_fdir,
+        op_ffwdevaction));
+
+Operation (
+   Type                     => Composite,
+   Name                     => op_tc_event_action,
+   Composite_Operation_List => 
+      ( op_fgetevaction,
+        op_ftcexecctrl,
+        op_ffwddronetc));
+
+Operation (
+   Type                     => Composite,
+   Name                     => op_drone_tc_in_flight,
+   Composite_Operation_List => 
+      ( op_fexecdronetc));
+
+Transaction (
+   Type            => regular,
+   Name            => evfligthctrl,
+   External_Events => 
+      ( ( Type       => Periodic,
+          Name       => entrada,
+          Period     => 0.100000,
+          Max_Jitter => 0.000,
+          Phase      => 0.000)),
+   Internal_Events => 
+      ( ( Type => Regular,
+          Name => "deadline",
+          Timing_Requirements => 
+            ( Type             => Hard_Global_Deadline,
+              Deadline         => 1.000,
+              Referenced_Event => entrada))),
+   Event_Handlers  => 
+      ( (Type               => Activity,
+         Input_Event        => entrada,
+         Output_Event       => "deadline",
+         Activity_Operation => op_evflightctrl,
+         Activity_Server    => dronemng)));
+
+Transaction (
+   Type            => regular,
+   Name            => evhk_fdir_evtceventaction_evdronetcinflight,
+   External_Events => 
+      ( ( Type       => Periodic,
+          Name       => evhk_fdir,
+          Period     => 1.000,
+          Max_Jitter => 0.000,
+          Phase      => 0.000)),
+   Internal_Events => 
+      ( ( Type => Regular,
+          Name => "deadline",
+          Timing_Requirements => 
+            ( Type             => Hard_Global_Deadline,
+              Deadline         => 1.000,
+              Referenced_Event => evhk_fdir)),
+        ( Type => Regular,
+          Name => ev_tc_event_action),
+        ( Type => Regular,
+          Name => ev_drone_tc_in_flight)),
+   Event_Handlers  => 
+      ( (Type               => Activity,
+         Input_Event        => evhk_fdir,
+         Output_Event       => ev_tc_event_action,
+         Activity_Operation => op_hk_fdir,
+         Activity_Server    => hk_fdirmng),
+        (Type               => Activity,
+         Input_Event        => ev_tc_event_action,
+         Output_Event       => ev_drone_tc_in_flight,
+         Activity_Operation => op_tc_event_action,
+         Activity_Server    => tcmanager),
+        (Type               => Activity,
+         Input_Event        => ev_drone_tc_in_flight,
+         Output_Event       => "deadline",
+         Activity_Operation => op_drone_tc_in_flight,
+         Activity_Server    => dronemng)));
+
